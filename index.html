@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Générateur de Carte Otaku</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --accent: #00e6e6; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1a1a1a, #333333);
+      margin: 0;
+      padding: 20px;
+      color: #f0f0f0;
+      text-align: center;
+    }
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 42px;
+      color: var(--accent);
+      margin: 40px 0 20px;
+      text-shadow: 2px 2px 5px #000;
+      letter-spacing: 3px;
+    }
+    form {
+      background: #262626;
+      padding: 30px;
+      width: 360px;
+      margin: 0 auto 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px var(--accent);
+    }
+    form input, form select, form button {
+      width: 90%;
+      margin: 12px auto;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #444;
+      background: #3a3a3a;
+      color: #f0f0f0;
+      display: block;
+      box-sizing: border-box;
+    }
+    form input:focus, form select:focus { outline: 2px solid var(--accent); }
+    form button {
+      background: var(--accent);
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    form button:hover { background: #00cccc; }
+
+    .carte {
+      position: relative;
+      width: 650px;
+      margin: 30px auto;
+      background: linear-gradient(145deg, #262626, #444);
+      border: 3px solid var(--accent);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 30px var(--accent);
+      font-size: 16px;
+      padding-bottom: 80px;
+      transition: all 0.3s ease-in-out;
+    }
+    .carte-header {
+      background: var(--accent);
+      color: #000;
+      font-family: 'Orbitron', sans-serif;
+      padding: 20px;
+      font-size: 24px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-align: center;
+    }
+    .carte-body {
+      display: flex;
+      padding: 20px;
+      align-items: center;
+    }
+    .carte-body img {
+      width: 150px;
+      height: 170px;
+      object-fit: cover;
+      object-position: center;
+      border: 3px solid var(--accent);
+      border-radius: 10px;
+      margin-right: 20px;
+      box-shadow: 0 0 10px var(--accent);
+      background: #222;
+      display: block;
+    }
+    .infos { text-align: left; }
+    .infos p {
+      margin: 8px 0;
+      font-size: 18px;
+    }
+    .infos p span {
+      font-weight: 600;
+      color: var(--accent);
+    }
+  .pnb{
+    color: Cyan;
+  }
+  
+    .barcode {
+      position: absolute;
+      bottom: 90px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 1px 3px;
+      border-radius: 3px;
+      max-width: 40px;
+    }
+    .barcode img {
+      width: 30px;
+      height: 15px;
+      display: block;
+      object-fit: contain;
+    }
+    .carte-footer {
+      background: var(--accent);
+      color: #000;
+      text-align: center;
+      padding: 12px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 18px;
+      font-weight: bold;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+    #downloadBtn {
+      padding: 14px 28px;
+      font-size: 18px;
+      background-color: var(--accent);
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      margin: 30px auto;
+      box-shadow: 0 0 15px var(--accent);
+      transition: background 0.3s;
+      display: block;
+    }
+    #downloadBtn:hover { background-color: #00cccc; }
+  </style>
+</head>
+<body>
+  <h1>Créer ta carte d'identité Otaku</h1>
+  <p class="pnb"><strong>NB:</strong>Veuillez Rogner après avoir choisis la photo pas avant</p>
+  <form id="otakuForm">
+    <input type="text" id="nom" placeholder="Nom" required>
+    <input type="text" id="prenom" placeholder="Prénom" required>
+    <input type="text" id="perso" placeholder="Personnage préféré" required>
+    <input type="text" id="anime" placeholder="Animé préféré" required>
+    <select id="type">
+      <option>Shonen</option>
+      <option>Shojo</option>
+      <option>Isekai</option>
+      <option>Seinen</option>
+      <option>Ecchi</option>
+    </select>
+    <input type="text" id="rang" placeholder="Rang" required>
+    <input type="text" id="citation" placeholder="Citation préférée (facultatif)">
+    <input type="file" id="photo" accept="image/*">
+    <button type="button" onclick="rognerPhoto()">Rogner la photo</button>
+    <label for="couleur">Choisis ta couleur :</label>
+    <select id="couleur" onchange="changerCouleurCarte()">
+      <option value="#ff69b4">Rose</option>
+      <option value="#ff3c3c">Rouge</option>
+      <option value="#ffa500">Orange</option>
+      <option value="#ffff00">Jaune</option>
+      <option value="#00ff00">Vert</option>
+      <option value="#00ced1">Cyan</option>
+      <option value="#1e90ff">Bleu</option>
+      <option value="#8a2be2">Violet</option>
+      <option value="#ff1493">Fuchsia</option>
+      <option value="#000000">Noir</option>
+    </select>
+    <button type="button" onclick="genererCarte()">Générer la carte</button>
+  </form>
+
+  <div id="carte" class="carte" style="display: none;">
+    <div class="carte-header">Carte d'identité Otaku</div>
+    <div class="carte-body">
+      <img id="imagePreview" src="https://via.placeholder.com/150x170.png?text=Photo" alt="Photo">
+      <div class="infos">
+        <p id="txtNom">Nom : <span></span></p>
+        <p id="txtPrenom">Prénom : <span></span></p>
+        <p id="txtPerso">Personnage préféré : <span></span></p>
+        <p id="txtAnime">Animé préféré : <span></span></p>
+        <p id="txtType">Type de manga : <span></span></p>
+        <p id="txtRang">Rang : <span></span></p>
+        <p id="txtCitation" style="display: none;">Citation préférée : <span></span></p>
+      </div>
+    </div>
+    <div class="barcode">
+      <img src="https://bwipjs-api.metafloor.com/?bcid=code128&text=Otaku&includetext" alt="Code Barre">
+    </div>
+    <div class="carte-footer">Cette carte montre comment vous êtes dévoués aux mondes des animés</div>
+  </div>
+
+  <button id="downloadBtn" onclick="telechargerCarte()">Télécharger la carte</button>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script>
+    function genererCarte() {
+      document.querySelector("#txtNom span").innerText = document.getElementById("nom").value;
+      document.querySelector("#txtPrenom span").innerText = document.getElementById("prenom").value;
+      document.querySelector("#txtPerso span").innerText = document.getElementById("perso").value;
+      document.querySelector("#txtAnime span").innerText = document.getElementById("anime").value;
+      document.querySelector("#txtType span").innerText = document.getElementById("type").value;
+      document.querySelector("#txtRang span").innerText = document.getElementById("rang").value;
+
+      const citation = document.getElementById("citation").value.trim();
+      const citationEl = document.getElementById("txtCitation");
+      if (citation) {
+        citationEl.style.display = "block";
+        citationEl.querySelector("span").innerText = citation;
+      } else {
+        citationEl.style.display = "none";
+      }
+
+      const file = document.getElementById("photo").files[0];
+      const image = document.getElementById("imagePreview");
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          image.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      } else {
+        image.src = "https://via.placeholder.com/150x170.png?text=Photo";
+      }
+
+      document.getElementById("carte").style.display = "block";
+    }
+
+    function telechargerCarte() {
+      const carte = document.getElementById("carte");
+      setTimeout(() => {
+        html2canvas(carte, {
+          useCORS: true,
+          allowTaint: false,
+          scale: 2
+        }).then(canvas => {
+          const link = document.createElement("a");
+          link.download = "carte_otaku.png";
+          link.href = canvas.toDataURL("image/png");
+          link.click();
+        });
+      }, 300);
+    }
+
+    function changerCouleurCarte() {
+      const couleur = document.getElementById("couleur").value;
+      document.documentElement.style.setProperty("--accent", couleur);
+    }
+
+    function rognerPhoto() {
+      const input = document.getElementById("photo");
+      const image = document.getElementById("imagePreview");
+
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const img = new Image();
+          img.onload = function () {
+            const size = Math.min(img.width, img.height);
+            const sx = (img.width - size) / 2;
+            const sy = (img.height - size) / 2;
+
+            const canvas = document.createElement("canvas");
+            canvas.width = 150;
+            canvas.height = 170;
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(img, sx, sy, size, size, 0, 0, 150, 170);
+
+            image.src = canvas.toDataURL("image/png");
+          };
+          img.src = e.target.result;
+        };
+        reader.readAsDataURL(input.files[0]);
+      } else {
+        alert("Veuillez d'abord choisir une photo.");
+      }
+    }
+  </script>
+
+  <p>© 2025 GANDXO. Tous droits réservés.</p>
+  <p>Pour le compte Facebook officiel du PDG de GANDXO, cliquez <a href="https://www.facebook.com/profile.php?id=100077566350367" target="_blank">ici</a>.</p>
+</body>
+</html>
+  
