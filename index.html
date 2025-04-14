@@ -4,6 +4,13 @@
   <meta charset="UTF-8">
   <title>Générateur de Carte Otaku</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <script defer data-domain="gandxo-tech.github.io" src="https://plausible.io/js/script.file-downloads.hash.outbound-links.pageview-props.revenue.tagged-events.js"></script>
+  <script>
+    window.plausible = window.plausible || function() {
+      (window.plausible.q = window.plausible.q || []).push(arguments);
+    }
+  </script>
+
   <style>
     :root { --accent: #00e6e6; }
     body {
@@ -51,7 +58,6 @@
       transition: background 0.3s;
     }
     form button:hover { background: #00cccc; }
-
     .carte {
       position: relative;
       width: 650px;
@@ -101,10 +107,7 @@
       font-weight: 600;
       color: var(--accent);
     }
-  .pnb{
-    color: Cyan;
-  }
-  
+    .pnb { color: Cyan; }
     .barcode {
       position: absolute;
       bottom: 90px;
@@ -184,7 +187,6 @@
     </select>
     <button type="button" onclick="genererCarte()">Générer la carte</button>
   </form>
-
   <div id="carte" class="carte" style="display: none;">
     <div class="carte-header">Carte d'identité Otaku</div>
     <div class="carte-body">
@@ -204,7 +206,6 @@
     </div>
     <div class="carte-footer">Cette carte montre comment vous êtes dévoués aux mondes des animés</div>
   </div>
-
   <button id="downloadBtn" onclick="telechargerCarte()">Télécharger la carte</button>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -291,9 +292,8 @@
       }
     }
   </script>
-
   <p>© 2025 GANDXO. Tous droits réservés.</p>
   <p>Pour le compte Facebook officiel du PDG de GANDXO, cliquez <a href="https://www.facebook.com/profile.php?id=100077566350367" target="_blank">ici</a>.</p>
 </body>
-</html>
+  </html>
   
