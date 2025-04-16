@@ -4,13 +4,6 @@
   <meta charset="UTF-8">
   <title>Générateur de Carte Otaku</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <script defer data-domain="gandxo-tech.github.io" src="https://plausible.io/js/script.file-downloads.hash.outbound-links.pageview-props.revenue.tagged-events.js"></script>
-  <script>
-    window.plausible = window.plausible || function() {
-      (window.plausible.q = window.plausible.q || []).push(arguments);
-    }
-  </script>
-
   <style>
     :root { --accent: #00e6e6; }
     body {
@@ -58,6 +51,7 @@
       transition: background 0.3s;
     }
     form button:hover { background: #00cccc; }
+
     .carte {
       position: relative;
       width: 650px;
@@ -86,6 +80,24 @@
       padding: 20px;
       align-items: center;
     }
+  /* Animation d’apparition douce de la carte */
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.carte {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  animation: fadeInScale 0.5s ease forwards;
+}
     .carte-body img {
       width: 150px;
       height: 170px;
@@ -107,7 +119,10 @@
       font-weight: 600;
       color: var(--accent);
     }
-    .pnb { color: Cyan; }
+  .pnb{
+    color: White;
+  }
+  
     .barcode {
       position: absolute;
       bottom: 90px;
@@ -152,9 +167,18 @@
     }
     #downloadBtn:hover { background-color: #00cccc; }
   </style>
+  <!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MYW96P6GKX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-MYW96P6GKX');
+</script>
 </head>
 <body>
-  <h1>Créer ta carte d'identité Otaku</h1>
+  <h1>Créer ta carte d'identité Otaku avec GANDXO</h1>
   <p class="pnb"><strong>NB:</strong>Veuillez Rogner après avoir choisis la photo pas avant</p>
   <form id="otakuForm">
     <input type="text" id="nom" placeholder="Nom" required>
@@ -183,10 +207,18 @@
       <option value="#1e90ff">Bleu</option>
       <option value="#8a2be2">Violet</option>
       <option value="#ff1493">Fuchsia</option>
-      <option value="#000000">Noir</option>
+     <option value="#808080">Gris</option>
+     <option value="#00bfff">Bleu ciel</option>
+     <option value="#ffb6c1">Rose clair</option>
+     <option value="#2e8b57">Vert foncé</option>
+     <option value="#c71585">Rose foncé</option>
+     <option value="#ffd700">Or</option>
+     <option value="#e6e6fa">Lavande</option>
+</select>
     </select>
     <button type="button" onclick="genererCarte()">Générer la carte</button>
   </form>
+
   <div id="carte" class="carte" style="display: none;">
     <div class="carte-header">Carte d'identité Otaku</div>
     <div class="carte-body">
@@ -204,8 +236,11 @@
     <div class="barcode">
       <img src="https://bwipjs-api.metafloor.com/?bcid=code128&text=Otaku&includetext" alt="Code Barre">
     </div>
-    <div class="carte-footer">Cette carte montre comment vous êtes dévoués aux mondes des animés</div>
+    <div class="carte-footer">
+Ni rêve, ni illusion. Juste toi et l’univers infini des animés.
+    </div>
   </div>
+
   <button id="downloadBtn" onclick="telechargerCarte()">Télécharger la carte</button>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -226,7 +261,12 @@
       } else {
         citationEl.style.display = "none";
       }
-
+       const carte = document.getElementById("carte");
+       carte.style.display = "block";
+       carte.style.animation = "none"; // reset si déjà visible
+       void carte.offsetWidth; // force le reflow
+       carte.style.animation = "fadeInScale 0.5s ease forwards";
+      
       const file = document.getElementById("photo").files[0];
       const image = document.getElementById("imagePreview");
       if (file) {
@@ -243,20 +283,23 @@
     }
 
     function telechargerCarte() {
-      const carte = document.getElementById("carte");
-      setTimeout(() => {
-        html2canvas(carte, {
-          useCORS: true,
-          allowTaint: false,
-          scale: 2
-        }).then(canvas => {
-          const link = document.createElement("a");
-          link.download = "carte_otaku.png";
-          link.href = canvas.toDataURL("image/png");
-          link.click();
-        });
-      }, 300);
-    }
+  const carte = document.getElementById("carte");
+  window.scrollTo(0, carte.offsetTop - 100); // s'assure que la carte est bien visible
+
+  html2canvas(carte, {
+    useCORS: true,
+    allowTaint: false,
+    scale: 2,
+    backgroundColor: null // transparent si besoin
+  }).then(canvas => {
+    const link = document.createElement("a");
+    link.download = "carte_otaku.png";
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+  }).catch(error => {
+    alert("Erreur lors de la capture : " + error);
+  });
+}
 
     function changerCouleurCarte() {
       const couleur = document.getElementById("couleur").value;
@@ -292,8 +335,23 @@
       }
     }
   </script>
-  <p>© 2025 GANDXO. Tous droits réservés.</p>
+<script>
+  document.addEventListener("contextmenu", function(e) {
+    e.preventDefault();
+    alert("Clic droit désactivé ! Champion tu cherches quoi dans mon code source 😂");
+  });
+
+  document.addEventListener("keydown", function(e) {
+    // Détecte Ctrl + U  ou Ctrl + Maj + U 
+    if (e.ctrlKey && e.keyCode === 85) {
+      e.preventDefault();
+      alert("Clic droit désactivé ! Champion tu cherches quoi dans mon code source 😂");
+      return false;
+    }
+  });
+</script>
+
+  <p>© 2025 GANXO. Tous droits réservés.</p>
   <p>Pour le compte Facebook officiel du PDG de GANDXO, cliquez <a href="https://www.facebook.com/profile.php?id=100077566350367" target="_blank">ici</a>.</p>
 </body>
-  </html>
-  
+</html>
