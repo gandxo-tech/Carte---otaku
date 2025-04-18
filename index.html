@@ -181,6 +181,14 @@
   <h1>Créer ta carte d'identité Otaku avec GANDXO</h1>
   <p class="pnb"><strong>NB:</strong>Veuillez Rogner après avoir choisis la photo pas avant</p>
   <form id="otakuForm">
+    <label for="langue">Langue :</label>
+<select id="langue" onchange="changerLangue()">
+  <option value="fr">Français</option>
+  <option value="mg">Malagasy</option>
+  <option value="en">English</option>
+  <option value="pt">Português</option>
+  <option value="es">Español</option>
+</select>
     <input type="text" id="nom" placeholder="Nom" required>
     <input type="text" id="prenom" placeholder="Prénom" required>
     <input type="text" id="perso" placeholder="Personnage préféré" required>
@@ -349,9 +357,113 @@ Ni rêve, ni illusion. Juste toi et l’univers infini des animés.
       return false;
     }
   });
+const traductions = {
+  fr: {
+    titre: "Créer ta carte d'identité Otaku",
+    nom: "Nom",
+    prenom: "Prénom",
+    perso: "Personnage préféré",
+    anime: "Animé préféré",
+    rang: "Rang",
+    citation: "Citation préférée (facultatif)",
+    boutonRogner: "Rogner la photo",
+    boutonGenerer: "Générer la carte",
+    boutonTelecharger: "Télécharger la carte",
+    labelType: "Type de manga :",
+    labelCouleur: "Choisis ta couleur :",
+    note: "NB:Veuillez Rogner après avoir choisis la photo pas avant",
+    carteHeader: "Carte d'identité Otaku",
+    footer: "Cette carte montre comment vous êtes dévoués aux mondes des animés"
+  },
+  mg: {
+    titre: "Mamoròna Karatra Otaku",
+    nom: "Anarana",
+    prenom: "Fanampiny",
+    perso: "Toetra tiana indrindra",
+    anime: "Anime tiana indrindra",
+    rang: "Laharana",
+    citation: "Teny faneva (tsy voatery)",
+    boutonRogner: "Hetezo ny sary",
+    boutonGenerer: "Mamorona karatra",
+    boutonTelecharger: "Alaivo ny karatra",
+    labelType: "Karazana manga :",
+    labelCouleur: "Misafidiana loko :",
+    note: "NB: Aza heteza mialoha fa aorian'ny fisafidianana sary",
+    carteHeader: "Karatra Maha-Otaku",
+    footer: "Ity karatra ity dia manaporofo fa tia anime ianao"
+  },
+  en: {
+    titre: "Create Your Otaku ID Card",
+    nom: "Last Name",
+    prenom: "First Name",
+    perso: "Favorite Character",
+    anime: "Favorite Anime",
+    rang: "Rank",
+    citation: "Favorite Quote (optional)",
+    boutonRogner: "Crop Photo",
+    boutonGenerer: "Generate Card",
+    boutonTelecharger: "Download Card",
+    labelType: "Manga Type:",
+    labelCouleur: "Choose your color:",
+    note: "NB: Crop after selecting the photo, not before",
+    carteHeader: "Otaku ID Card",
+    footer: "This card shows your devotion to the anime world"
+  },
+  pt: {
+    titre: "Crie seu Cartão de Otaku",
+    nom: "Sobrenome",
+    prenom: "Nome",
+    perso: "Personagem favorito",
+    anime: "Anime favorito",
+    rang: "Classificação",
+    citation: "Citação favorita (opcional)",
+    boutonRogner: "Cortar foto",
+    boutonGenerer: "Gerar cartão",
+    boutonTelecharger: "Baixar cartão",
+    labelType: "Tipo de mangá:",
+    labelCouleur: "Escolha sua cor:",
+    note: "NB: Recorte após escolher a foto, não antes",
+    carteHeader: "Cartão de Identificação Otaku",
+    footer: "Este cartão mostra sua dedicação ao mundo dos animes"
+  },
+  es: {
+    titre: "Crea tu Tarjeta Otaku",
+    nom: "Apellido",
+    prenom: "Nombre",
+    perso: "Personaje favorito",
+    anime: "Anime favorito",
+    rang: "Rango",
+    citation: "Cita favorita (opcional)",
+    boutonRogner: "Recortar foto",
+    boutonGenerer: "Generar tarjeta",
+    boutonTelecharger: "Descargar tarjeta",
+    labelType: "Tipo de manga:",
+    labelCouleur: "Elige tu color:",
+    note: "NB: Recorta después de elegir la foto, no antes",
+    carteHeader: "Tarjeta de Identificación Otaku",
+    footer: "Esta tarjeta demuestra tu devoción por el mundo del anime"
+  }
+  
+}; 
+function changerLangue() {
+  const langue = document.getElementById("langue").value;
+  const t = traductions[langue];
+
+  document.querySelector(".carte-header").textContent = t.header;
+  document.getElementById("txtNom").childNodes[0].nodeValue = t.nom + " : ";
+  document.getElementById("txtPrenom").childNodes[0].nodeValue = t.prenom + " : ";
+  document.getElementById("txtPerso").childNodes[0].nodeValue = t.perso + " : ";
+  document.getElementById("txtAnime").childNodes[0].nodeValue = t.anime + " : ";
+  document.getElementById("txtType").childNodes[0].nodeValue = t.type + " : ";
+  document.getElementById("txtRang").childNodes[0].nodeValue = t.rang + " : ";
+  document.getElementById("txtCitation").childNodes[0].nodeValue = t.citation + " : ";
+  document.querySelector(".carte-footer").textContent = t.footer;
+}
+
 </script>
 
   <p>© 2025 GANXO. Tous droits réservés.</p>
   <p>Pour le compte Facebook officiel du PDG de GANDXO, cliquez <a href="https://www.facebook.com/profile.php?id=100077566350367" target="_blank">ici</a>.</p>
 </body>
-</html>
+  </html>
+  
