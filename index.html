@@ -178,6 +178,16 @@
 
   gtag('config', 'G-MYW96P6GKX');
 </script>
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+      .then(function(reg) {
+        console.log('Service Worker enregistré avec succès :', reg.scope);
+      }).catch(function(error) {
+        console.log('Échec de l’enregistrement du Service Worker :', error);
+      });
+  }
+</script>
 </head>
 <body>
   <h1>Créer ta carte d'identité Otaku avec GANDXO</h1>
