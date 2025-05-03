@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<meta name="clckd" content="6f86be5a4cabd0d19dd6b8a81df1e3cc" />
   <meta charset="UTF-8">
   <title>Générateur de Carte Otaku</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
@@ -124,7 +125,7 @@
   .pnb{
     color: White;
   }
-  
+
     .barcode {
       position: absolute;
       bottom: 90px;
@@ -132,11 +133,11 @@
       background: rgba(255, 255, 255, 0.8);
       padding: 1px 3px;
       border-radius: 3px;
-      max-width: 40px;
+      max-width: 80px;
     }
     .barcode img {
       width: 30px;
-      height: 15px;
+      height: 20px;
       display: block;
       object-fit: contain;
     }
@@ -168,6 +169,18 @@
       display: block;
     }
     #downloadBtn:hover { background-color: #00cccc; }
+
+    /* Styles RTL */
+    [dir="rtl"] .infos {
+      text-align: right;
+    }
+    [dir="rtl"] .carte-body {
+      flex-direction: row-reverse;
+    }
+    [dir="rtl"] .carte-body img {
+      margin-right: 0;
+      margin-left: 20px;
+    }
   </style>
   <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MYW96P6GKX"></script>
@@ -178,12 +191,19 @@
 
   gtag('config', 'G-MYW96P6GKX');
 </script>
-<meta name="monetag" content="9782f02bf59810d1725c7f970a6af689">
 </head>
 <body>
   <h1>Créer ta carte d'identité Otaku avec GANDXO</h1>
   <p class="pnb"><strong>NB:</strong>Veuillez Rogner après avoir choisis la photo pas avant</p>
   <form id="otakuForm">
+    <select id="langue" onchange="changerLangue()">
+      <option value="fr">Français</option>
+      <option value="en">English</option>
+      <option value="es">Español</option>
+      <option value="fil">Filipino</option>
+      <option value="mg">Malagasy</option>
+      <option value="ar">العربية</option>
+    </select>
     <input type="text" id="nom" placeholder="Nom" required>
     <input type="text" id="prenom" placeholder="Prénom" required>
     <input type="text" id="perso" placeholder="Personnage préféré" required>
@@ -222,23 +242,23 @@
   </form>
 
   <div id="carte" class="carte" style="display: none;">
-    <div class="carte-header">Carte d'identité Otaku</div>
+    <div class="carte-header" data-translate="header">Carte d'identité Otaku</div>
     <div class="carte-body">
       <img id="imagePreview" src="https://via.placeholder.com/150x170.png?text=Photo" alt="Photo">
       <div class="infos">
-        <p id="txtNom">Nom : <span></span></p>
-        <p id="txtPrenom">Prénom : <span></span></p>
-        <p id="txtPerso">Personnage préféré : <span></span></p>
-        <p id="txtAnime">Animé préféré : <span></span></p>
-        <p id="txtType">Type de manga : <span></span></p>
-        <p id="txtRang">Rang : <span></span></p>
-        <p id="txtCitation" style="display: none;">Citation préférée : <span></span></p>
+        <p data-translate="nom">Nom : <span></span></p>
+        <p data-translate="prenom">Prénom : <span></span></p>
+        <p data-translate="perso">Personnage préféré : <span></span></p>
+        <p data-translate="anime">Animé préféré : <span></span></p>
+        <p data-translate="type">Type de manga : <span></span></p>
+        <p data-translate="rang">Rang : <span></span></p>
+        <p id="txtCitation" data-translate="citation" style="display: none;">Citation préférée : <span></span></p>
       </div>
     </div>
     <div class="barcode">
       <img src="https://bwipjs-api.metafloor.com/?bcid=code128&text=Otaku&includetext" alt="Code Barre">
     </div>
-    <div class="carte-footer">
+    <div class="carte-footer" data-translate="footer">
 Ni rêve, ni illusion. Juste toi et l’univers infini des animés.
     </div>
   </div>
@@ -247,29 +267,121 @@ Ni rêve, ni illusion. Juste toi et l’univers infini des animés.
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script>
-    function genererCarte() {
-      document.querySelector("#txtNom span").innerText = document.getElementById("nom").value;
-      document.querySelector("#txtPrenom span").innerText = document.getElementById("prenom").value;
-      document.querySelector("#txtPerso span").innerText = document.getElementById("perso").value;
-      document.querySelector("#txtAnime span").innerText = document.getElementById("anime").value;
-      document.querySelector("#txtType span").innerText = document.getElementById("type").value;
-      document.querySelector("#txtRang span").innerText = document.getElementById("rang").value;
+    const traductions = {
+      fr: {
+        header: "Carte d'identité Otaku",
+        nom: "Nom :",
+        prenom: "Prénom :",
+        perso: "Personnage préféré :",
+        anime: "Animé préféré :",
+        type: "Type de manga :",
+        rang: "Rang :",
+        citation: "Citation préférée :",
+        footer: "Ni rêve, ni illusion. Juste toi et l’univers infini des animés."
+      },
+      en: {
+        header: "Otaku ID Card",
+        nom: "Last Name :",
+        prenom: "First Name :",
+        perso: "Favorite Character :",
+        anime: "Favorite Anime :",
+        type: "Manga Type :",
+        rang: "Rank :",
+        citation: "Favorite Quote :",
+        footer: "No dream, no illusion. Just you and the infinite anime universe."
+      },
+      es: {
+        header: "Tarjeta de Identidad Otaku",
+        nom: "Apellido :",
+        prenom: "Nombre :",
+        perso: "Personaje Favorito :",
+        anime: "Anime Favorito :",
+        type: "Tipo de Manga :",
+        rang: "Rango :",
+        citation: "Cita Favorita :",
+        footer: "Ni sueño, ni ilusión. Solo tú y el universo infinito del anime."
+      },
+      fil: {
+        header: "Otaku ID Card",
+        nom: "Pangalan :",
+        prenom: "Pangalan sa Gitna :",
+        perso: "Paboritong Tauhan :",
+        anime: "Paboritong Anime :",
+        type: "Uri ng Manga :",
+        rang: "Ranggo :",
+        citation: "Paboritong Quote :",
+        footer: "Walang pangarap, walang ilusyon. Ikaw at ang walang hanggang mundo ng anime."
+      },
+      mg: {
+        header: "Karapanondro Otaku",
+        nom: "Anarana :",
+        prenom: "Anarana fanampiny :",
+        perso: "Tantara tianao :",
+        anime: "Anime tianao :",
+        type: "Karazana Manga :",
+        rang: "Laharana :",
+        citation: "Ohatra tianao :",
+        footer: "Tsy nofy, tsy fitaka. Hianao sy ny anime rehetra."
+      },
+      ar: {
+        header: "بطاقة هوية أوتاكو",
+        nom: "الاسم العائلي :",
+        prenom: "الاسم الأول :",
+        perso: "الشخصية المفضلة :",
+        anime: "الأنمي المفضل :",
+        type: "نوع المانجا :",
+        rang: "الرتبة :",
+        citation: "الاقتباس المفضل :",
+        footer: "لا حلم ولا وهم. فقط أنت والكون اللامتناهي للأنمي."
+      }
+    };
+
+    function changerLangue() {
+      const langue = document.getElementById('langue').value;
+      const elements = document.querySelectorAll('[data-translate]');
       
+      elements.forEach(el => {
+        const key = el.getAttribute('data-translate');
+        el.childNodes[0].textContent = traductions[langue][key];
+      });
+
+      document.getElementById('citation').placeholder = traductions[langue].citation.replace(' :', '') + ' (facultatif)';
+      
+      const carte = document.getElementById('carte');
+      if(langue === 'ar') {
+        carte.style.direction = 'rtl';
+        document.querySelector('.infos').style.textAlign = 'right';
+      } else {
+        carte.style.direction = 'ltr';
+        document.querySelector('.infos').style.textAlign = 'left';
+      }
+    }
+
+    function genererCarte() {
+      const langue = document.getElementById('langue').value;
+      
+      document.querySelector('[data-translate="nom"] span').textContent = document.getElementById("nom").value;
+      document.querySelector('[data-translate="prenom"] span').textContent = document.getElementById("prenom").value;
+      document.querySelector('[data-translate="perso"] span').textContent = document.getElementById("perso").value;
+      document.querySelector('[data-translate="anime"] span').textContent = document.getElementById("anime").value;
+      document.querySelector('[data-translate="type"] span').textContent = document.getElementById("type").value;
+      document.querySelector('[data-translate="rang"] span').textContent = document.getElementById("rang").value;
 
       const citation = document.getElementById("citation").value.trim();
       const citationEl = document.getElementById("txtCitation");
       if (citation) {
         citationEl.style.display = "block";
-        citationEl.querySelector("span").innerText = citation;
+        citationEl.querySelector("span").textContent = citation;
       } else {
         citationEl.style.display = "none";
       }
-       const carte = document.getElementById("carte");
-       carte.style.display = "block";
-       carte.style.animation = "none"; // reset si déjà visible
-       void carte.offsetWidth; // force le reflow
-       carte.style.animation = "fadeInScale 0.5s ease forwards";
-      
+
+      const carte = document.getElementById("carte");
+      carte.style.display = "block";
+      carte.style.animation = "none";
+      void carte.offsetWidth;
+      carte.style.animation = "fadeInScale 0.5s ease forwards";
+
       const file = document.getElementById("photo").files[0];
       const image = document.getElementById("imagePreview");
       if (file) {
@@ -282,27 +394,31 @@ Ni rêve, ni illusion. Juste toi et l’univers infini des animés.
         image.src = "https://via.placeholder.com/150x170.png?text=Photo";
       }
 
-      document.getElementById("carte").style.display = "block";
+      if(langue === 'ar') {
+        document.querySelector('.infos').style.textAlign = 'right';
+      } else {
+        document.querySelector('.infos').style.textAlign = 'left';
+      }
     }
 
     function telechargerCarte() {
-  const carte = document.getElementById("carte");
-  window.scrollTo(0, carte.offsetTop - 100); // s'assure que la carte est bien visible
+      const carte = document.getElementById("carte");
+      window.scrollTo(0, carte.offsetTop - 100);
 
-  html2canvas(carte, {
-    useCORS: true,
-    allowTaint: false,
-    scale: 2,
-    backgroundColor: null // transparent si besoin
-  }).then(canvas => {
-    const link = document.createElement("a");
-    link.download = "carte_otaku.png";
-    link.href = canvas.toDataURL("image/png");
-    link.click();
-  }).catch(error => {
-    alert("Erreur lors de la capture : " + error);
-  });
-}
+      html2canvas(carte, {
+        useCORS: true,
+        allowTaint: false,
+        scale: 2,
+        backgroundColor: null
+      }).then(canvas => {
+        const link = document.createElement("a");
+        link.download = "carte_otaku.png";
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+      }).catch(error => {
+        alert("Erreur lors de la capture : " + error);
+      });
+    }
 
     function changerCouleurCarte() {
       const couleur = document.getElementById("couleur").value;
