@@ -58,6 +58,10 @@
       width: 650px;
       margin: 30px auto;
       background: linear-gradient(145deg, #262626, #444);
+      background-position: center; /* Ajustez selon le besoin */
+      background-repeat: no-repeat;
+      background-size: conver;
+      image-rendering: crisp-edges;
       border: 3px solid var(--accent);
       border-radius: 20px;
       overflow: hidden;
@@ -194,9 +198,15 @@
 </head>
 <body>
   <h1>Créer ta carte d'identité Otaku avec GANDXO</h1>
+  
  <p>Notre générateur de carte Otaku a déjà attiré plus de 500 utilisateurs !
 Je suis disponible pour faire de la publicité (produits, services, chaînes, pages...) sur ce site.
-Intéressé ? Contactez-moi dès maintenant !<a href="https://www.facebook.com/profile.php?id=100077566350367" target="_blank">Contact du créateur</a>.</p>
+Intéressé ? Contactez-moi dès maintenant !
+   <ul>
+     <li>Compte Facebook : <a href="https://www.facebook.com/profile.php?id=100077566350367" target="_blank">Contact du créateur</a>.</li>
+     <li>Whatsapp: <a href="https://wa.me/qr/VSIIYLVPVFI4J1" target="_blank">Ecrire sur whatsapp</a></li>
+   </ul>
+   </p>
   <p class="pnb"><strong>NB:</strong>Veuillez Rogner après avoir choisis la photo pas avant</p>
   <form id="otakuForm">
     <select id="langue" onchange="changerLangue()">
@@ -240,6 +250,39 @@ Intéressé ? Contactez-moi dès maintenant !<a href="https://www.facebook.com/p
      <option value="#c71585">Rose foncé</option>
      <option value="#ffd700">Or</option>
      <option value="#e6e6fa">Lavande</option>
+</select>
+    <label for="background">Choisis ton image de fond :</label>
+<select id="background" onchange="previewBackground()" aria-label="Choisir l'image de fond">
+  <option value="https://i.ibb.co/kgDFXrMj/dc4b1b59c88b0771e852053272733fb4-2.jpg">Obito</option>
+  <option value="https://i.ibb.co/FL9hT47w/9f522e9da02a6d2f26ec4327bde3d28d-2.jpg">Luffy</option>
+  <option value="https://i.ibb.co/whb5Dw0n/a97b28b642f082dd10aa0aa46072828f-2.jpg">Sharingan 1</option>
+  <option value="https://i.ibb.co/6RhSRd31/047d1b99cd5a784fe5bb845793d78c9f-2.jpg">Dragon 1</option>
+  <option value="https://i.ibb.co/7NYJNcSn/e7d5aff48e7d1eec499ebcc5bfc85b74-2.jpg">Sharingan 2</option>
+  <option value="https://i.ibb.co/NnJmgSNQ/58f160fa8af9a9ce9bee60befb1b926d-2.jpg">Dragon 2</option>
+  <option value="https://i.ibb.co/k2M7pcMD/40ea9c34484ddc8969e1f3d17da621bd.jpg">Black Luffy</option>
+  <option value="https://i.ibb.co/q3S3JKh5/93c1e8653c6bb61d9455cd5721717cbd.jpg">Black yorishi</option>
+  <option value="https://i.ibb.co/5W1Xy8Y2/cecea15ee563e782b63a5340d24248d7.jpg">Sasuke black</option>
+  <option value="https://i.ibb.co/6cdsHnTN/b4d2b038563748bc7b5261209f716e2c.jpg">Zenitsu black</option>
+  <option value="https://i.ibb.co/MDX4HwR8/c0526ffff85d4d78c0c6eb128ee6ad38.jpg">Barbe blanche</option>
+  <option value="https://i.ibb.co/rKZRRkYX/IMG-20250618-WA0018.jpg">Zenitsu 2</option>
+  <option value="https://i.ibb.co/27Q5wCQS/5e75ef48e100d376243e7acb2365c208.jpg">Fond fleur japonais black</option>
+  <option value="https://i.ibb.co/YTBVVGKD/c9fd2f3d961a669b46e0c0ac0582dcd9.jpg">Fond soul eater black</option>
+  <option value="https://i.ibb.co/jxBS6Q0/269c29f550cd6361e6531a274034ac59.jpg">Bunny girl senpai</option>
+  <option value="https://i.ibb.co/JwvBBBq9/251c0a6433814ac09758c19e9168b519.jpg">Garou fond black</option>
+  <option value="https://i.ibb.co/NgGpDqJ7/822fa20c05e3048434cfbf122b4e90f1.jpg">Sung jinwoo</option>
+  <option value="https://i.ibb.co/twvqVB5w/IMG-20250618-WA0054.jpg">Satoru Gojo</option>
+  <option value="https://i.ibb.co/4RPDCJ56/IMG-20250618-WA0057.jpg">Girl Kawaii</option>
+  <option value="https://i.ibb.co/v67Qs7vt/IMG-20250618-WA0055.jpg">Solo leveling</option>
+  <option value="https://i.ibb.co/jPG7MKvh/IMG-20250618-WA0062.jpg">Satoru Gojo 2</option>
+  <option value="https://i.ibb.co/KpLYvGJd/IMG-20250618-WA0051.jpg">Girl fond 2</option>
+  <option value="https://i.ibb.co/B2CL1XL1/IMG-20250618-WA0061.jpg">Sukuna</option>
+  <option value="https://i.ibb.co/bYfqdpr/IMG-20250618-WA0059.jpg">Gojo 2</option>
+  <option value="https://i.ibb.co/TVX4Wz7/644501f2f4374d51dc5116e35c776f95.jpg">Kawaii fond</option>
+  <option value="https://i.ibb.co/qMnh06kP/b71f31eb609d3736b17a5826044275c3.jpg">Girl fond 3</option>
+  <option value="https://i.ibb.co/Mx3cb73R/336c57cf19f0b2162cbae754e053c205.jpg">Girl fond 4</option>
+  <option value="https://i.ibb.co/HDNsWpx9/26a2cc5025bf4f4506163b8b61606610.jpg">Kawaii fond 2</option>
+  <option value="https://i.ibb.co/FbnRNtCQ/6df0937df39ae77797cdb254f4f6979c.jpg">Kawaii fond 3</option>
+  <option value="default">Aucune (par défaut)</option>
 </select>
     <button type="button" onclick="genererCarte()">Générer la carte 😍</button>
   </form>
@@ -342,14 +385,14 @@ Ni rêve, ni illusion. Juste toi et l’univers infini des animés.
     function changerLangue() {
       const langue = document.getElementById('langue').value;
       const elements = document.querySelectorAll('[data-translate]');
-      
+
       elements.forEach(el => {
         const key = el.getAttribute('data-translate');
         el.childNodes[0].textContent = traductions[langue][key];
       });
 
       document.getElementById('citation').placeholder = traductions[langue].citation.replace(' :', '') + ' (facultatif)';
-      
+
       const carte = document.getElementById('carte');
       if(langue === 'ar') {
         carte.style.direction = 'rtl';
@@ -362,7 +405,7 @@ Ni rêve, ni illusion. Juste toi et l’univers infini des animés.
 
     function genererCarte() {
       const langue = document.getElementById('langue').value;
-      
+
       document.querySelector('[data-translate="nom"] span').textContent = document.getElementById("nom").value;
       document.querySelector('[data-translate="prenom"] span').textContent = document.getElementById("prenom").value;
       document.querySelector('[data-translate="perso"] span').textContent = document.getElementById("perso").value;
@@ -427,7 +470,28 @@ Ni rêve, ni illusion. Juste toi et l’univers infini des animés.
       const couleur = document.getElementById("couleur").value;
       document.documentElement.style.setProperty("--accent", couleur);
     }
-
+function previewBackground() {
+  const background = document.getElementById("background").value;
+  const carte = document.getElementById("carte");
+  if (background === "default") {
+    carte.style.background = "linear-gradient(145deg, #262626, #444)";
+    carte.style.backgroundImage = "none";
+  } else {
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onerror = () => {
+      alert("Erreur : L'image de fond n'a pas pu être chargée.");
+      carte.style.backgroundImage = "none";
+    };
+    img.onload = () => {
+      carte.style.background = "none";
+      carte.style.backgroundImage = `url("${background}")`;
+      carte.style.backgroundSize = "cover";
+      carte.style.backgroundPosition = "center";
+    };
+    img.src = background;
+  }
+}
     function rognerPhoto() {
       const input = document.getElementById("photo");
       const image = document.getElementById("imagePreview");
@@ -458,8 +522,4 @@ Ni rêve, ni illusion. Juste toi et l’univers infini des animés.
     }
   </script>
   <p>© 2025 GANDXO. Tous droits réservés.</p>
-  <p>Notre générateur de carte Otaku a déjà attiré plus de 200 utilisateurs !
-Je suis disponible pour faire de la publicité (produits, services, chaînes, pages...) sur ce site.
-Intéressé ? Contactez-moi dès maintenant !<a href="https://www.facebook.com/profile.php?id=100077566350367" target="_blank">Me contacter</a></p>
-</body>
 </html>
