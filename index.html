@@ -312,6 +312,20 @@ Mon aura commence à partir de cette carte.
   <button id="downloadBtn" onclick="telechargerCarte()">Télécharger la carte📥</button>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Vérifie si l'utilisateur a déjà vu la notif
+    if (!localStorage.getItem('notifSeen')) {
+      // Affiche la notification après 1 seconde
+      setTimeout(() => {
+        alert(" Abonne toi au compte du créateur pour le soutenir 💥\n👉 https://www.facebook.com/exau.ce.706852");
+
+        // Marque la notif comme vue pour éviter le spam
+        localStorage.setItem('notifSeen', 'true');
+      }, 1000);
+    }
+  });
+</script>
   <script>
     const traductions = {
       fr: {
