@@ -529,5 +529,46 @@ function previewBackground() {
       }
     }
   </script>
+<div id="ebook-notif" style="
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #fff;
+    color: #000;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    padding: 16px 20px;
+    z-index: 9999;
+    display: none;
+    font-family: sans-serif;
+    width: 280px;
+    animation: fadeIn 0.5s ease-in-out;
+">
+    <span onclick="this.parentElement.style.display='none'" 
+          style="position: absolute; top: 8px; right: 12px; cursor: pointer;">✖</span>
+    <strong>📘 Nouveau !</strong><br>
+    Le créateur a lancé un eBook pour créer ton premier site web !<br><br>
+    <a href="https://osxzfvga.mychariow.com" target="_blank" 
+       style="color: #1a73e8; font-weight: bold;">Découvre-le ici</a>
+</div>
+
+<style>
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+</style>
+
+<script>
+  window.addEventListener('load', function() {
+    const notif = document.getElementById('ebook-notif');
+    notif.style.display = 'block';
+
+    // Auto-disparition après 15 secondes
+    setTimeout(() => {
+      notif.style.display = 'none';
+    }, 15000);
+  });
+</script>
   <p>© 2025 GANDXO. Tous droits réservés.</p>
 </html>
