@@ -319,23 +319,6 @@ Une carte ? Non. Une relique d’un autre monde
   <br><br>
   <button onclick="closePopup()" style="margin-top:10px; padding:6px 12px; border:none; background:#444; color:#fff; border-radius:8px; cursor:pointer;">Fermer</button>
 </div>
-
-<!-- ✅ SCRIPT JS -->
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    if (!localStorage.getItem('notifSeen')) {
-      setTimeout(() => {
-        document.getElementById('fb-popup').style.display = 'block';
-        localStorage.setItem('notifSeen', 'true');
-      }, 1000);
-    }
-  });
-
-  function closePopup() {
-    document.getElementById('fb-popup').style.display = 'none';
-  }
-</script>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script>
     const traductions = {
