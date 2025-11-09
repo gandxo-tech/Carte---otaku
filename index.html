@@ -716,4 +716,343 @@
               <p data-translate="anime">Animé :<span></span></p>
               <p data-translate="type">Type :<span></span></p>
               <p data-translate="rang">Rang :<span>
+</span></p>
+              <p id="txtCitation" data-translate="citation" style="display: none;">Citation :<span></span></p>
+            </div>
+          </div>
+          <div class="barcode">
+            <img src="https://bwipjs-api.metafloor.com/?bcid=code128&text=Otaku&includetext" alt="Code Barre">
+          </div>
+          <div class="carte-footer" data-translate="footer">
+            Une carte ? Non. Une relique d'un autre monde
+          </div>
+        </div>
+        
+        <div class="download-section" id="downloadSection" style="display: none;">
+          <button id="downloadBtn" onclick="telechargerCarte()">📥 Télécharger la carte</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Info Panel -->
+    <div class="info-panel">
+      <h3>💼 Opportunités publicitaires</h3>
+      <p>Notre générateur de carte Otaku a déjà attiré plus de 500 utilisateurs ! Je suis disponible pour faire de la publicité (produits, services, chaînes, pages...) sur ce site. Intéressé ? Contactez-moi dès maintenant !</p>
+      <ul>
+        <li>📘 Facebook : <a href="https://www.facebook.com/profile.php?id=100077566350367" target="_blank">Contact du créateur</a></li>
+        <li>💬 WhatsApp : <a href="https://wa.me/22967091309" target="_blank">+229 67 09 13 09</a></li>
+      </ul>
+      <div class="note-box">
+        <strong>⚠️ Note importante :</strong> Veuillez rogner après avoir choisi la photo, pas avant.
+      </div>
+    </div>
+  </div>
+
+  <!-- Popups -->
+  <div id="fb-popup" class="popup">
+    <strong>🔥 Hey otaku !</strong><br>
+    Abonne-toi au compte Facebook du créateur pour le soutenir 👇<br>
+    <a href="https://www.facebook.com/exau.ce.706852" target="_blank">👉 Suis-nous sur Facebook</a>
+    <br>
+    <button onclick="closePopup()">Fermer</button>
+  </div>
+
+  <div id="ebook-notif" class="popup">
+    <strong>📘 Nouveau !</strong><br>
+    Le créateur de ce site a lancé un eBook pour créer ton premier site web !<br><br>
+    <a href="https://osxzfvga.mychariow.com" target="_blank">Découvre-le ici</a>
+    <br>
+    <button onclick="this.parentElement.style.display='none'">Fermer</button>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>© 2025 GANDXO. Tous droits réservés.</p>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script>
+    const traductions = {
+      fr: {
+        header: "Carte d'identité Otaku",
+        nom: "Nom :",
+        prenom: "Prénom :",
+        perso: "Personnage :",
+        anime: "Animé :",
+        type: "Type :",
+        rang: "Rang :",
+        citation: "Citation :",
+        footer: "Une carte ? Non. Une relique d'un autre monde"
+      },
+      en: {
+        header: "Otaku ID Card",
+        nom: "Last Name :",
+        prenom: "First Name :",
+        perso: "Character :",
+        anime: "Anime :",
+        type: "Type :",
+        rang: "Rank :",
+        citation: "Quote :",
+        footer: "A card? No. A relic from another world"
+      },
+      es: {
+        header: "Tarjeta de Identidad Otaku",
+        nom: "Apellido :",
+        prenom: "Nombre :",
+        perso: "Personaje :",
+        anime: "Anime :",
+        type: "Tipo :",
+        rang: "Rango :",
+        citation: "Cita :",
+        footer: "¿Una tarjeta? No. Una reliquia de otro mundo"
+      },
+      fil: {
+        header: "Otaku ID Card",
+        nom: "Pangalan :",
+        prenom: "Unang Pangalan :",
+        perso: "Tauhan :",
+        anime: "Anime :",
+        type: "Uri :",
+        rang: "Ranggo :",
+        citation: "Quote :",
+        footer: "Isang kard? Hindi. Isang relihiya mula sa ibang mundo"
+      },
+      mg: {
+        header: "Karapanondro Otaku",
+        nom: "Anarana :",
+        prenom: "Anarana fanampiny :",
+        perso: "Tantara :",
+        anime: "Anime :",
+        type: "Karazana :",
+        rang: "Laharana :",
+        citation: "Teny :",
+        footer: "Karapanondro? Tsia. Rakitra avy amin'ny tontolo hafa"
+      },
+      ar: {
+        header: "بطاقة هوية أوتاكو",
+        nom: "الاسم :",
+        prenom: "الاسم الأول :",
+        perso: "الشخصية :",
+        anime: "الأنمي :",
+        type: "النوع :",
+        rang: "الرتبة :",
+        citation: "الاقتباس :",
+        footer: "بطاقة؟ لا. أثر من عالم آخر"
+      }
+    };
+
+    function changerLangue() {
+      const langue = document.getElementById('langue').value;
+      const elements = document.querySelectorAll('[data-translate]');
+
+      elements.forEach(el => {
+        const key = el.getAttribute('data-translate');
+        if (el.querySelector('span')) {
+          el.childNodes[0].textContent = traductions[langue][key];
+        } else {
+          el.textContent = traductions[langue][key];
+        }
+      });
+
+      document.getElementById('citation').placeholder = traductions[langue].citation.replace(' :', '') + ' (facultatif)';
+
+      const carte = document.getElementById('carte');
+      if(langue === 'ar') {
+        carte.style.direction = 'rtl';
+        document.querySelector('.infos').style.textAlign = 'right';
+      } else {
+        carte.style.direction = 'ltr';
+        document.querySelector('.infos').style.textAlign = 'left';
+      }
+    }
+
+    function genererCarte() {
+      const langue = document.getElementById('langue').value;
+
+      document.querySelector('[data-translate="nom"] span').textContent = document.getElementById("nom").value;
+      document.querySelector('[data-translate="prenom"] span').textContent = document.getElementById("prenom").value;
+      document.querySelector('[data-translate="perso"] span').textContent = document.getElementById("perso").value;
+      document.querySelector('[data-translate="anime"] span').textContent = document.getElementById("anime").value;
+      document.querySelector('[data-translate="type"] span').textContent = document.getElementById("type").value;
+      document.querySelector('[data-translate="rang"] span').textContent = document.getElementById("rang").value;
+
+      const citation = document.getElementById("citation").value.trim();
+      const citationEl = document.getElementById("txtCitation");
+      if (citation) {
+        citationEl.style.display = "block";
+        citationEl.querySelector("span").textContent = citation;
+      } else {
+        citationEl.style.display = "none";
+      }
+
+      const carte = document.getElementById("carte");
+      const previewTitle = document.getElementById("previewTitle");
+      const downloadSection = document.getElementById("downloadSection");
+      
+      carte.style.display = "block";
+      previewTitle.style.display = "block";
+      downloadSection.style.display = "block";
+      
+      carte.classList.remove('show');
+      void carte.offsetWidth;
+      carte.classList.add('show');
+
+      const file = document.getElementById("photo").files[0];
+      const image = document.getElementById("imagePreview");
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          image.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      } else {
+        image.src = "https://via.placeholder.com/160x180.png?text=Photo";
+      }
+
+      if(langue === 'ar') {
+        document.querySelector('.infos').style.textAlign = 'right';
+      } else {
+        document.querySelector('.infos').style.textAlign = 'left';
+      }
+
+      // Scroll vers la carte
+      setTimeout(() => {
+        carte.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 100);
+    }
+
+    function telechargerCarte() {
+      const carte = document.getElementById("carte");
+      window.scrollTo(0, carte.offsetTop - 100);
+
+      html2canvas(carte, {
+        useCORS: true,
+        allowTaint: false,
+        scale: 2,
+        backgroundColor: null
+      }).then(canvas => {
+        const link = document.createElement("a");
+        link.download = "carte_otaku_" + Date.now() + ".png";
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+      }).catch(error => {
+        alert("Erreur lors de la capture : " + error);
+      });
+    }
+
+    function changerCouleurCarte() {
+      const couleur = document.getElementById("couleur").value;
+      document.documentElement.style.setProperty("--accent", couleur);
+      
+      // Calculer une couleur plus foncée pour le dégradé
+      const hex = couleur.replace('#', '');
+      const r = parseInt(hex.substr(0, 2), 16);
+      const g = parseInt(hex.substr(2, 2), 16);
+      const b = parseInt(hex.substr(4, 2), 16);
+      
+      const darkerR = Math.floor(r * 0.7);
+      const darkerG = Math.floor(g * 0.7);
+      const darkerB = Math.floor(b * 0.7);
+      
+      const darkerColor = '#' + 
+        darkerR.toString(16).padStart(2, '0') + 
+        darkerG.toString(16).padStart(2, '0') + 
+        darkerB.toString(16).padStart(2, '0');
+      
+      document.documentElement.style.setProperty("--accent-dark", darkerColor);
+      document.documentElement.style.setProperty("--accent-glow", couleur + '4D'); // 30% opacity
+    }
+
+    function previewBackground() {
+      const background = document.getElementById("background").value;
+      const carte = document.getElementById("carte");
+      
+      if (background === "default") {
+        carte.style.background = "linear-gradient(145deg, var(--bg-card), var(--bg-secondary))";
+        carte.style.backgroundImage = "none";
+      } else {
+        const img = new Image();
+        img.crossOrigin = "anonymous";
+        img.onerror = () => {
+          alert("Erreur : L'image de fond n'a pas pu être chargée.");
+          carte.style.backgroundImage = "none";
+        };
+        img.onload = () => {
+          carte.style.background = "none";
+          carte.style.backgroundImage = `url("${background}")`;
+          carte.style.backgroundSize = "cover";
+          carte.style.backgroundPosition = "center";
+        };
+        img.src = background;
+      }
+    }
+
+    function rognerPhoto() {
+      const input = document.getElementById("photo");
+      const image = document.getElementById("imagePreview");
+
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const img = new Image();
+          img.onload = function () {
+            const size = Math.min(img.width, img.height);
+            const sx = (img.width - size) / 2;
+            const sy = (img.height - size) / 2;
+
+            const canvas = document.createElement("canvas");
+            canvas.width = 160;
+            canvas.height = 180;
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(img, sx, sy, size, size, 0, 0, 160, 180);
+
+            image.src = canvas.toDataURL("image/png");
+          };
+          img.src = e.target.result;
+        };
+        reader.readAsDataURL(input.files[0]);
+      } else {
+        alert("Veuillez d'abord choisir une photo.");
+      }
+    }
+
+    function changerStyle(style) {
+      const carte = document.getElementById('carte');
+      const options = document.querySelectorAll('.style-option');
+      
+      // Retirer la classe active de tous les boutons
+      options.forEach(opt => opt.classList.remove('active'));
+      
+      // Ajouter la classe active au bouton cliqué
+      document.querySelector(`[data-style="${style}"]`).classList.add('active');
+      
+      // Retirer toutes les classes de style
+      carte.classList.remove('modern', 'sharp', 'rounded');
+      
+      // Ajouter la nouvelle classe de style
+      carte.classList.add(style);
+    }
+
+    function closePopup() {
+      document.getElementById('fb-popup').style.display = 'none';
+    }
+
+    // Afficher les popups après un certain temps
+    window.addEventListener('load', function() {
+      // Popup eBook après 5 secondes
+      setTimeout(() => {
+        document.getElementById('ebook-notif').style.display = 'block';
+        setTimeout(() => {
+          document.getElementById('ebook-notif').style.display = 'none';
+        }, 15000);
+      }, 5000);
+
+      // Popup Facebook après 20 secondes
+      setTimeout(() => {
+        document.getElementById('fb-popup').style.display = 'block';
+      }, 20000);
+    });
+  </script>
+</body>
+</html>
  
