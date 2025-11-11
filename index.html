@@ -711,4 +711,364 @@
           <div class="carte-footer" data-translate="footer">
             Une carte ? Non. Une relique d'un autre monde
           </div>
-            
+            </div>
+        
+        <div class="download-section" id="downloadSection" style="display: none;">
+          <button id="downloadBtn">📥 Télécharger la carte</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="info-panel">
+      <h3>💼 Opportunités publicitaires</h3>
+      <p>Notre générateur de carte Otaku a déjà attiré plus de 500 utilisateurs ! Je suis disponible pour faire de la publicité (produits, services, chaînes, pages...) sur ce site. Intéressé ? Contactez-moi dès maintenant !</p>
+      <ul>
+        <li>📘 Facebook : <a href="https://www.facebook.com/profile.php?id=100077566350367" target="_blank">Contact du créateur</a></li>
+        <li>💬 WhatsApp : <a href="https://wa.me/22967091309" target="_blank">+229 67 09 13 09</a></li>
+      </ul>
+      <div class="note-box">
+        <strong>⚠️ Note importante :</strong> Veuillez rogner après avoir choisi la photo, pas avant.
+      </div>
+    </div>
+  </div>
+
+  <div id="fb-popup" class="popup">
+    <strong>🔥 Hey otaku !</strong><br>
+    Abonne-toi au compte Facebook du créateur pour le soutenir 👇<br>
+    <a href="https://www.facebook.com/exau.ce.706852" target="_blank">👉 Suis-nous sur Facebook</a>
+    <br>
+    <button id="closeFbPopup">Fermer</button>
+  </div>
+
+  <div id="ebook-notif" class="popup">
+    <strong>📘 Nouveau !</strong><br>
+    Le créateur de ce site a lancé un eBook pour créer ton premier site web !<br><br>
+    <a href="https://osxzfvga.mychariow.com" target="_blank">Découvre-le ici</a>
+    <br>
+    <button id="closeEbookPopup">Fermer</button>
+  </div>
+
+  <div class="footer">
+    <p>© 2025 GANDXO. Tous droits réservés.</p>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script>
+    // Traductions
+    const traductions = {
+      fr: {
+        header: "Carte d'identité Otaku",
+        nom: "Nom :",
+        prenom: "Prénom :",
+        perso: "Personnage :",
+        anime: "Animé :",
+        type: "Type :",
+        rang: "Rang :",
+        citation: "Citation :",
+        footer: "Une carte ? Non. Une relique d'un autre monde"
+      },
+      en: {
+        header: "Otaku ID Card",
+        nom: "Last Name :",
+        prenom: "First Name :",
+        perso: "Character :",
+        anime: "Anime :",
+        type: "Type :",
+        rang: "Rank :",
+        citation: "Quote :",
+        footer: "A card? No. A relic from another world"
+      },
+      es: {
+        header: "Tarjeta de Identidad Otaku",
+        nom: "Apellido :",
+        prenom: "Nombre :",
+        perso: "Personaje :",
+        anime: "Anime :",
+        type: "Tipo :",
+        rang: "Rango :",
+        citation: "Cita :",
+        footer: "¿Una tarjeta? No. Una reliquia de otro mundo"
+      },
+      fil: {
+        header: "Otaku ID Card",
+        nom: "Pangalan :",
+        prenom: "Unang Pangalan :",
+        perso: "Tauhan :",
+        anime: "Anime :",
+        type: "Uri :",
+        rang: "Ranggo :",
+        citation: "Quote :",
+        footer: "Isang kard? Hindi. Isang relihiya mula sa ibang mundo"
+      },
+      mg: {
+        header: "Karapanondro Otaku",
+        nom: "Anarana :",
+        prenom: "Anarana fanampiny :",
+        perso: "Tantara :",
+        anime: "Anime :",
+        type: "Karazana :",
+        rang: "Laharana :",
+        citation: "Teny :",
+        footer: "Karapanondro? Tsia. Rakitra avy amin'ny tontolo hafa"
+      },
+      ar: {
+        header: "بطاقة هوية أوتاكو",
+        nom: "الاسم :",
+        prenom: "الاسم الأول :",
+        perso: "الشخصية :",
+        anime: "الأنمي :",
+        type: "النوع :",
+        rang: "الرتبة :",
+        citation: "الاقتباس :",
+        footer: "بطاقة؟ لا. أثر من عالم آخر"
+      }
+    };
+
+    // Variables globales
+    let currentStyle = 'modern';
+
+    // Fonction de changement de langue
+    function changerLangue() {
+      const langue = document.getElementById('langue').value;
+      const elements = document.querySelectorAll('[data-translate]');
+
+      elements.forEach(el => {
+        const key = el.getAttribute('data-translate');
+        if (el.querySelector('span')) {
+          el.childNodes[0].textContent = traductions[langue][key];
+        } else {
+          el.textContent = traductions[langue][key];
+        }
+      });
+
+      document.getElementById('citation').placeholder = traductions[langue].citation.replace(' :', '') + ' (facultatif)';
+
+      const carte = document.getElementById('carte');
+      if(langue === 'ar') {
+        carte.setAttribute('dir', 'rtl');
+      } else {
+        carte.setAttribute('dir', 'ltr');
+      }
+    }
+
+    // Fonction de génération de carte
+    function genererCarte() {
+      const nom = document.getElementById("nom").value.trim();
+      const prenom = document.getElementById("prenom").value.trim();
+      const perso = document.getElementById("perso").value.trim();
+      const anime = document.getElementById("anime").value.trim();
+      const rang = document.getElementById("rang").value.trim();
+
+      if (!nom || !prenom || !perso || !anime || !rang) {
+        alert("Veuillez remplir tous les champs obligatoires !");
+        return;
+      }
+
+      document.querySelector('[data-translate="nom"] span').textContent = nom;
+      document.querySelector('[data-translate="prenom"] span').textContent = prenom;
+      document.querySelector('[data-translate="perso"] span').textContent = perso;
+      document.querySelector('[data-translate="anime"] span').textContent = anime;
+      document.querySelector('[data-translate="type"] span').textContent = document.getElementById("type").value;
+      document.querySelector('[data-translate="rang"] span').textContent = rang;
+
+      const citation = document.getElementById("citation").value.trim();
+      const citationEl = document.getElementById("txtCitation");
+      if (citation) {
+        citationEl.style.display = "block";
+        citationEl.querySelector("span").textContent = citation;
+      } else {
+        citationEl.style.display = "none";
+      }
+
+      const carte = document.getElementById("carte");
+      const previewTitle = document.getElementById("previewTitle");
+      const downloadSection = document.getElementById("downloadSection");
+      
+      carte.style.display = "block";
+      previewTitle.style.display = "block";
+      downloadSection.style.display = "block";
+      
+      carte.classList.remove('show');
+      void carte.offsetWidth;
+      carte.classList.add('show');
+
+      const file = document.getElementById("photo").files[0];
+      const image = document.getElementById("imagePreview");
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          image.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      } else {
+        image.src = "https://via.placeholder.com/160x180.png?text=Photo";
+      }
+
+      setTimeout(() => {
+        carte.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 100);
+    }
+
+    // Fonction de téléchargement
+    function telechargerCarte() {
+      const carte = document.getElementById("carte");
+      
+      html2canvas(carte, {
+        useCORS: true,
+        allowTaint: false,
+        scale: 2,
+        backgroundColor: null
+      }).then(canvas => {
+        const link = document.createElement("a");
+        link.download = "carte_otaku_" + Date.now() + ".png";
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+      }).catch(error => {
+        console.error("Erreur lors de la capture :", error);
+        alert("Erreur lors du téléchargement. Veuillez réessayer.");
+      });
+    }
+
+    // Fonction de changement de couleur
+    function changerCouleurCarte() {
+      const couleur = document.getElementById("couleur").value;
+      document.documentElement.style.setProperty("--accent", couleur);
+      
+      const hex = couleur.replace('#', '');
+      const r = parseInt(hex.substring(0, 2), 16);
+      const g = parseInt(hex.substring(2, 4), 16);
+      const b = parseInt(hex.substring(4, 6), 16);
+      
+      const darkerR = Math.floor(r * 0.7);
+      const darkerG = Math.floor(g * 0.7);
+      const darkerB = Math.floor(b * 0.7);
+      
+      const darkerColor = '#' + 
+        darkerR.toString(16).padStart(2, '0') + 
+        darkerG.toString(16).padStart(2, '0') + 
+        darkerB.toString(16).padStart(2, '0');
+      
+      document.documentElement.style.setProperty("--accent-dark", darkerColor);
+      document.documentElement.style.setProperty("--accent-glow", `rgba(${r}, ${g}, ${b}, 0.3)`);
+    }
+
+    // Fonction de prévisualisation du fond
+    function previewBackground() {
+      const background = document.getElementById("background").value;
+      const carte = document.getElementById("carte");
+      
+      if (background === "default") {
+        carte.style.background = "linear-gradient(145deg, var(--bg-card), var(--bg-secondary))";
+        carte.style.backgroundImage = "none";
+      } else {
+        carte.style.background = "none";
+        carte.style.backgroundImage = `url("${background}")`;
+        carte.style.backgroundSize = "cover";
+        carte.style.backgroundPosition = "center";
+      }
+    }
+
+    // Fonction de rognage
+    function rognerPhoto() {
+      const input = document.getElementById("photo");
+      const image = document.getElementById("imagePreview");
+
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const img = new Image();
+          img.onload = function () {
+            const size = Math.min(img.width, img.height);
+            const sx = (img.width - size) / 2;
+            const sy = (img.height - size) / 2;
+
+            const canvas = document.createElement("canvas");
+            canvas.width = 160;
+            canvas.height = 180;
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(img, sx, sy, size, size, 0, 0, 160, 180);
+
+            image.src = canvas.toDataURL("image/png");
+          };
+          img.src = e.target.result;
+        };
+        reader.readAsDataURL(input.files[0]);
+      } else {
+        alert("Veuillez d'abord choisir une photo.");
+      }
+    }
+
+    // Fonction de changement de style
+    function changerStyle(style) {
+      const carte = document.getElementById('carte');
+      const options = document.querySelectorAll('.style-option');
+      
+      options.forEach(opt => opt.classList.remove('active'));
+      
+      event.target.classList.add('active');
+      
+      carte.classList.remove('modern', 'sharp', 'rounded');
+      carte.classList.add(style);
+      
+      currentStyle = style;
+    }
+
+    // Event Listeners
+    document.addEventListener('DOMContentLoaded', function() {
+      // Langue
+      document.getElementById('langue').addEventListener('change', changerLangue);
+      
+      // Bouton générer
+      document.getElementById('btnGenerer').addEventListener('click', genererCarte);
+      
+      // Bouton rogner
+      document.getElementById('btnRogner').addEventListener('click', rognerPhoto);
+      
+      // Bouton télécharger
+      document.getElementById('downloadBtn').addEventListener('click', telechargerCarte);
+      
+      // Couleur
+      document.getElementById('couleur').addEventListener('change', changerCouleurCarte);
+      
+      // Background
+      document.getElementById('background').addEventListener('change', previewBackground);
+      
+      // Style options
+      document.querySelectorAll('.style-option').forEach(option => {
+        option.addEventListener('click', function() {
+          const style = this.getAttribute('data-style');
+          const carte = document.getElementById('carte');
+          const options = document.querySelectorAll('.style-option');
+          
+          options.forEach(opt => opt.classList.remove('active'));
+          this.classList.add('active');
+          
+          carte.classList.remove('modern', 'sharp', 'rounded');
+          carte.classList.add(style);
+        });
+      });
+      
+      // Popups
+      document.getElementById('closeFbPopup').addEventListener('click', function() {
+        document.getElementById('fb-popup').style.display = 'none';
+      });
+      
+      document.getElementById('closeEbookPopup').addEventListener('click', function() {
+        document.getElementById('ebook-notif').style.display = 'none';
+      });
+      
+      // Affichage des popups
+      setTimeout(() => {
+        document.getElementById('ebook-notif').style.display = 'block';
+        setTimeout(() => {
+          document.getElementById('ebook-notif').style.display = 'none';
+        }, 15000);
+      }, 5000);
+
+      setTimeout(() => {
+        document.getElementById('fb-popup').style.display = 'block';
+      }, 20000);
+    });
+  </script>
+</body>
+</html>
