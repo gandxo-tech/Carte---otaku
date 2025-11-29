@@ -4,872 +4,423 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="clckd" content="6f86be5a4cabd0d19dd6b8a81df1e3cc" />
   <meta charset="UTF-8">
-  <title>Générateur de Carte Otaku Professionnel</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <title>Générateur de Carte Otaku</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-   :root { 
-     --accent: #00d4ff;
-     --accent-dark: #0099cc;
-     --accent-glow: rgba(0, 212, 255, 0.3);
-     --bg-primary: #0a1628;
-     --bg-secondary: #142841;
-     --bg-card: #1a2f4a;
-     --text-primary: #e0f2ff;
-     --text-secondary: #a8d8f0;
-   }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+   :root { --accent: #00e6e6; }
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, #1e3a5f 100%);
-      background-attachment: fixed;
-      color: var(--text-primary);
-      min-height: 100vh;
-    }
-    
-    .header-section {
+      background: linear-gradient(135deg, #1a1a1a, #333333);
+      margin: 0;
+      padding: 20px;
+      color: #f0f0f0;
       text-align: center;
-      padding: 60px 20px 40px;
-      background: linear-gradient(180deg, rgba(0, 212, 255, 0.05) 0%, transparent 100%);
     }
     h1 {
       font-family: 'Orbitron', sans-serif;
-      font-size: 48px;
-      font-weight: 900;
+      font-size: 42px;
       color: var(--accent);
-      margin-bottom: 15px;
-      text-shadow: 0 0 30px var(--accent-glow), 2px 2px 8px rgba(0,0,0,0.5);
-      letter-spacing: 4px;
-      animation: glow 2s ease-in-out infinite alternate;
+      margin: 40px 0 20px;
+      text-shadow: 2px 2px 5px #000;
+      letter-spacing: 3px;
     }
-    
-    @keyframes glow {
-      from { text-shadow: 0 0 20px var(--accent-glow), 2px 2px 8px rgba(0,0,0,0.5); }
-      to { text-shadow: 0 0 40px var(--accent-glow), 0 0 60px var(--accent-glow), 2px 2px 8px rgba(0,0,0,0.5); }
-    }
-    
-    .subtitle {
-      font-size: 18px;
-      color: var(--text-secondary);
-      font-weight: 300;
-      margin-bottom: 20px;
-    }
-    
-    .stats {
-      display: inline-block;
-      background: rgba(0, 212, 255, 0.1);
-      padding: 10px 25px;
-      border-radius: 25px;
-      border: 1px solid rgba(0, 212, 255, 0.3);
-      font-size: 14px;
-      color: var(--accent);
-      font-weight: 600;
-    }
-    
-    .container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-    
-    .main-content {
-      display: grid;
-      grid-template-columns: 450px 1fr;
-      gap: 40px;
-      padding: 40px 0;
-      align-items: start;
-    }
-    
-    @media (max-width: 1200px) {
-      .main-content {
-        grid-template-columns: 1fr;
-        max-width: 600px;
-        margin: 0 auto;
-      }
-      h1 {
-        font-size: 32px;
-      }
-    }
-    
-    .form-section {
-      background: linear-gradient(145deg, var(--bg-card), var(--bg-secondary));
-      padding: 35px;
-      border-radius: 20px;
-      box-shadow: 0 10px 40px rgba(0, 212, 255, 0.15), 0 0 0 1px rgba(0, 212, 255, 0.1);
-      backdrop-filter: blur(10px);
-    }
-    
-    @media (min-width: 1200px) {
-      .form-section {
-        position: sticky;
-        top: 20px;
-      }
-    }
-    
-    .form-title {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 24px;
-      color: var(--accent);
-      margin-bottom: 25px;
-      text-align: center;
-      letter-spacing: 2px;
-    }
-    
-    .form-group {
-      margin-bottom: 20px;
-    }
-    
-    .form-group label {
-      display: block;
-      color: var(--text-secondary);
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 8px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    
-    .form-group input[type="text"],
-    .form-group input[type="file"],
-    .form-group select {
-      width: 100%;
-      padding: 14px;
-      font-size: 15px;
+    form {
+      background: #262626;
+      padding: 30px;
+      width: 360px;
+      margin: 0 auto 30px;
       border-radius: 12px;
-      border: 1px solid rgba(0, 212, 255, 0.2);
-      background: rgba(20, 40, 65, 0.8);
-      color: var(--text-primary);
-      transition: all 0.3s ease;
-      font-family: 'Poppins', sans-serif;
+      box-shadow: 0 0 20px var(--accent);
     }
-    
-    .form-group input:focus,
-    .form-group select:focus { 
-      outline: none;
-      border-color: var(--accent);
-      box-shadow: 0 0 20px var(--accent-glow);
-      background: rgba(20, 40, 65, 1);
-    }
-    
-    .form-group input[type="color"] {
-      width: 100%;
-      height: 50px;
-      border-radius: 12px;
-      border: 2px solid rgba(0, 212, 255, 0.3);
-      cursor: pointer;
-      transition: all 0.3s ease;
-      background: transparent;
-      padding: 5px;
-    }
-    
-    .form-group input[type="color"]:hover {
-      border-color: var(--accent);
-      box-shadow: 0 0 20px var(--accent-glow);
-    }
-    
-    .style-selector {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-top: 8px;
-    }
-    
-    .style-option {
+    form input, form select, form button {
+      width: 90%;
+      margin: 12px auto;
       padding: 12px;
-      border-radius: 10px;
-      border: 2px solid rgba(0, 212, 255, 0.2);
-      background: rgba(20, 40, 65, 0.6);
-      cursor: pointer;
-      text-align: center;
-      font-size: 13px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      color: var(--text-secondary);
-      user-select: none;
-    }
-    
-    .style-option:hover {
-      border-color: var(--accent);
-      background: rgba(0, 212, 255, 0.1);
-    }
-    
-    .style-option.active {
-      border-color: var(--accent);
-      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
-      color: #000;
-      box-shadow: 0 0 20px var(--accent-glow);
-    }
-    
-    .btn {
-      width: 100%;
-      padding: 16px;
       font-size: 16px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-family: 'Orbitron', sans-serif;
-      margin-top: 10px;
+      border-radius: 8px;
+      border: 1px solid #444;
+      background: #3a3a3a;
+      color: #f0f0f0;
+      display: block;
+      box-sizing: border-box;
     }
-    
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+    form input:focus, form select:focus { outline: 2px solid var(--accent); }
+    form button {
+      background: var(--accent);
       color: #000;
-      box-shadow: 0 8px 25px var(--accent-glow);
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
     }
-    
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 35px var(--accent-glow);
-    }
-    
-    .btn-secondary {
-      background: rgba(0, 212, 255, 0.1);
-      color: var(--accent);
-      border: 2px solid var(--accent);
-    }
-    
-    .btn-secondary:hover {
-      background: rgba(0, 212, 255, 0.2);
-      transform: translateY(-2px);
-    }
-    
-    .preview-section {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 30px;
-    }
-    
-    .preview-title {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 28px;
-      color: var(--accent);
-      text-align: center;
-      letter-spacing: 2px;
-    }
-    
+    form button:hover { background: #00cccc; }
+
     .carte {
       position: relative;
-      width: 100%;
-      max-width: 700px;
-      background: linear-gradient(145deg, var(--bg-card), var(--bg-secondary));
-      background-position: center;
+      width: 650px;
+      margin: 30px auto;
+      background: linear-gradient(145deg, #262626, #444);
+      background-position: center; /* Ajustez selon le besoin */
       background-repeat: no-repeat;
-      background-size: cover;
+      background-size: conver;
+      image-rendering: crisp-edges;
       border: 3px solid var(--accent);
+      border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 15px 50px rgba(0, 212, 255, 0.3), 0 0 100px rgba(0, 212, 255, 0.15);
+      box-shadow: 0 0 30px var(--accent);
       font-size: 16px;
       padding-bottom: 80px;
-      transition: all 0.4s ease;
-      opacity: 0;
-      transform: scale(0.95);
+      transition: all 0.3s ease-in-out;
     }
-    
-    .carte.modern {
-      border-radius: 25px;
-    }
-    
-    .carte.sharp {
-      border-radius: 5px;
-    }
-    
-    .carte.rounded {
-      border-radius: 40px;
-    }
-    
-    @keyframes fadeInScale {
-      0% {
-        opacity: 0;
-        transform: scale(0.95) translateY(20px);
-      }
-      100% {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-      }
-    }
-
-    .carte.show {
-      animation: fadeInScale 0.6s ease forwards;
-    }
-    
     .carte-header {
-      z-index: 1;
-      position: relative;
-      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
-      color: #000;
-      font-family: 'Orbitron', sans-serif;
-      padding: 25px;
-      font-size: 26px;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      text-align: center;
-      box-shadow: 0 4px 20px var(--accent-glow);
-      font-weight: 900;
+  z-index: 1;
+  position: relative;
+  background: var(--accent);
+  color: #000;
+  font-family: 'Orbitron', sans-serif;
+  padding: 20px;
+  font-size: 24px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
     }
-    
     .carte-body {
       display: flex;
-      padding: 30px;
+      padding: 20px;
       align-items: center;
-      background: rgba(10, 22, 40, 0.7);
-      backdrop-filter: blur(10px);
-      gap: 25px;
     }
-    
+  /* Animation d’apparition douce de la carte */
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.carte {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  animation: fadeInScale 0.5s ease forwards;
+}
     .carte-body img {
-      width: 160px;
-      height: 180px;
+      width: 150px;
+      height: 170px;
       object-fit: cover;
       object-position: center;
       border: 3px solid var(--accent);
-      box-shadow: 0 0 25px var(--accent-glow);
-      background: var(--bg-secondary);
+      border-radius: 10px;
+      margin-right: 20px;
+      box-shadow: 0 0 10px var(--accent);
+      background: #222;
       display: block;
-      flex-shrink: 0;
     }
-    
-    .carte.modern .carte-body img { border-radius: 15px; }
-    .carte.sharp .carte-body img { border-radius: 0; }
-    .carte.rounded .carte-body img { border-radius: 50%; }
-    
-    .infos { 
-      text-align: left;
-      flex: 1;
-    }
+    .infos { text-align: left; }
     .infos p {
-      margin: 10px 0;
-      font-size: 17px;
-      color: var(--text-secondary);
-      line-height: 1.6;
+      margin: 8px 0;
+      font-size: 18px;
     }
     .infos p span {
-      font-weight: 700;
+      font-weight: 600;
       color: var(--accent);
-      text-shadow: 0 0 10px var(--accent-glow);
-      display: inline-block;
-      margin-left: 8px;
     }
-    
+  .pnb{
+    color: White;
+  }
+
     .barcode {
       position: absolute;
-      bottom: 95px;
-      right: 25px;
-      background: rgba(255, 255, 255, 0.95);
-      padding: 5px 8px;
-      border-radius: 6px;
-      max-width: 90px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+      bottom: 90px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 1px 3px;
+      border-radius: 3px;
+      max-width: 80px;
     }
     .barcode img {
-      width: 35px;
-      height: 22px;
+      width: 30px;
+      height: 20px;
       display: block;
       object-fit: contain;
     }
-    
     .carte-footer {
-      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+      background: var(--accent);
       color: #000;
       text-align: center;
-      padding: 15px;
+      padding: 12px;
       font-family: 'Orbitron', sans-serif;
-      font-size: 17px;
-      font-weight: 700;
+      font-size: 18px;
+      font-weight: bold;
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      box-shadow: 0 -4px 20px var(--accent-glow);
     }
-    
-    .download-section {
-      text-align: center;
-      width: 100%;
-    }
-    
     #downloadBtn {
-      padding: 18px 40px;
+      padding: 14px 28px;
       font-size: 18px;
-      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+      background-color: var(--accent);
       color: #000;
       border: none;
-      border-radius: 15px;
+      border-radius: 8px;
       cursor: pointer;
-      font-weight: 700;
-      box-shadow: 0 8px 30px var(--accent-glow);
-      transition: all 0.3s ease;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-family: 'Orbitron', sans-serif;
+      font-weight: bold;
+      margin: 30px auto;
+      box-shadow: 0 0 15px var(--accent);
+      transition: background 0.3s;
+      display: block;
     }
-    #downloadBtn:hover { 
-      transform: translateY(-4px);
-      box-shadow: 0 15px 45px var(--accent-glow);
-    }
-    
-    .info-panel {
-      background: rgba(0, 212, 255, 0.05);
-      padding: 20px;
-      border-radius: 15px;
-      border-left: 4px solid var(--accent);
-      margin: 30px 20px;
-      max-width: 1400px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    
-    .info-panel h3 {
-      color: var(--accent);
-      font-size: 20px;
-      margin-bottom: 15px;
-      font-family: 'Orbitron', sans-serif;
-    }
-    
-    .info-panel p {
-      color: var(--text-secondary);
-      line-height: 1.8;
-      margin-bottom: 15px;
-    }
-    
-    .info-panel ul {
-      list-style: none;
-      padding: 0;
-    }
-    
-    .info-panel li {
-      padding: 8px 0;
-      color: var(--text-secondary);
-    }
-    
-    .info-panel a {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-    
-    .info-panel a:hover {
-      color: #fff;
-      text-shadow: 0 0 10px var(--accent-glow);
-    }
-    
-    .note-box {
-      background: rgba(255, 165, 0, 0.1);
-      border-left: 4px solid #ff9500;
-      padding: 15px;
-      border-radius: 10px;
-      color: #ffb84d;
-      margin-top: 20px;
-    }
+    #downloadBtn:hover { background-color: #00cccc; }
 
+    /* Styles RTL */
     [dir="rtl"] .infos {
       text-align: right;
     }
     [dir="rtl"] .carte-body {
       flex-direction: row-reverse;
     }
-    [dir="rtl"] .infos p span {
-      margin-left: 0;
-      margin-right: 8px;
-    }
-    
-    .footer {
-      text-align: center;
-      padding: 30px 20px;
-      color: var(--text-secondary);
-      font-size: 14px;
-      border-top: 1px solid rgba(0, 212, 255, 0.1);
-      margin-top: 60px;
-    }
-    
-    .popup {
-      display: none;
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background: linear-gradient(145deg, #fff, #f0f0f0);
-      color: #000;
-      padding: 20px 25px;
-      border-radius: 15px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-      z-index: 9999;
-      font-family: 'Poppins', sans-serif;
-      max-width: 350px;
-      animation: slideIn 0.5s ease;
-    }
-    
-    @keyframes slideIn {
-      from { 
-        opacity: 0;
-        transform: translateX(100px);
-      }
-      to { 
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-    
-    .popup strong {
-      display: block;
-      font-size: 18px;
-      margin-bottom: 10px;
-      color: #1877F2;
-    }
-    
-    .popup a {
-      color: #1877F2;
-      font-weight: 600;
-      text-decoration: none;
-    }
-    
-    .popup button {
-      margin-top: 15px;
-      padding: 8px 16px;
-      border: none;
-      background: #333;
-      color: #fff;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-    
-    .popup button:hover {
-      background: #000;
-      transform: translateY(-2px);
-    }
-    
-    @media (max-width: 768px) {
-      .popup {
-        right: 10px;
-        bottom: 10px;
-        max-width: calc(100% - 20px);
-      }
+    [dir="rtl"] .carte-body img {
+      margin-right: 0;
+      margin-left: 20px;
     }
   </style>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MYW96P6GKX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-MYW96P6GKX');
-  </script>
+  <!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MYW96P6GKX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-MYW96P6GKX');
+</script>
 </head>
 <body>
-  <div class="header-section">
-    <h1>GÉNÉRATEUR DE CARTE OTAKU</h1>
-    <p class="subtitle">Créez votre identité otaku professionnelle en quelques clics</p>
-    <div class="stats">✨ Plus de 500 utilisateurs conquis</div>
-  </div>
+  <h1>Créer ta carte d'identité Otaku avec GANDXO</h1>
 
-  <div class="container">
-    <div class="main-content">
-      <div class="form-section">
-        <h2 class="form-title">Personnalisation</h2>
-        
-        <div class="form-group">
-          <label for="langue">🌍 Langue</label>
-          <select id="langue">
-            <option value="fr">Français</option>
-            <option value="en">English</option>
-            <option value="es">Español</option>
-            <option value="fil">Filipino</option>
-            <option value="mg">Malagasy</option>
-            <option value="ar">العربية</option>
-          </select>
-        </div>
-        
-        <div class="form-group">
-          <label for="nom">👤 Nom</label>
-          <input type="text" id="nom" placeholder="Votre nom" required>
-        </div>
-        
-        <div class="form-group">
-          <label for="prenom">✨ Prénom</label>
-          <input type="text" id="prenom" placeholder="Votre prénom" required>
-        </div>
-        
-        <div class="form-group">
-          <label for="perso">🎭 Personnage préféré</label>
-          <input type="text" id="perso" placeholder="Ex: Luffy, Naruto..." required>
-        </div>
-        
-        <div class="form-group">
-          <label for="anime">📺 Animé préféré</label>
-          <input type="text" id="anime" placeholder="Ex: One Piece..." required>
-        </div>
-        
-        <div class="form-group">
-          <label for="type">📚 Type de manga</label>
-          <select id="type">
-            <option>Shonen</option>
-            <option>Shojo</option>
-            <option>Isekai</option>
-            <option>Seinen</option>
-            <option>Ecchi</option>
-          </select>
-        </div>
-        
-        <div class="form-group">
-          <label for="rang">🏆 Rang</label>
-          <input type="text" id="rang" placeholder="Ex: Otaku Légendaire" required>
-        </div>
-        
-        <div class="form-group">
-          <label for="citation">💬 Citation (facultatif)</label>
-          <input type="text" id="citation" placeholder="Votre citation préférée">
-        </div>
-        
-        <div class="form-group">
-          <label for="photo">📸 Photo</label>
-          <input type="file" id="photo" accept="image/*">
-        </div>
-        
-        <button class="btn btn-secondary" id="btnRogner">✂️ Rogner la photo</button>
-        
-        <div class="form-group">
-          <label for="couleur">🎨 Couleur personnalisée</label>
-          <input type="color" id="couleur" value="#00d4ff">
-        </div>
-        
-        <div class="form-group">
-          <label>🔲 Style de carte</label>
-          <div class="style-selector">
-            <div class="style-option active" data-style="modern">Moderne</div>
-            <div class="style-option" data-style="sharp">Carré</div>
-            <div class="style-option" data-style="rounded">Arrondi</div>
-          </div>
-        </div>
-        
-        <div class="form-group">
-          <label for="background">🖼️ Image de fond</label>
-          <select id="background">
-            <option value="default">Aucune (par défaut)</option>
-            <option value="https://i.ibb.co/kgDFXrMj/dc4b1b59c88b0771e852053272733fb4-2.jpg">Obito</option>
-            <option value="https://i.ibb.co/FL9hT47w/9f522e9da02a6d2f26ec4327bde3d28d-2.jpg">Luffy</option>
-            <option value="https://i.ibb.co/whb5Dw0n/a97b28b642f082dd10aa0aa46072828f-2.jpg">Sharingan 1</option>
-            <option value="https://i.ibb.co/6RhSRd31/047d1b99cd5a784fe5bb845793d78c9f-2.jpg">Dragon 1</option>
-            <option value="https://i.ibb.co/7NYJNcSn/e7d5aff48e7d1eec499ebcc5bfc85b74-2.jpg">Sharingan 2</option>
-            <option value="https://i.ibb.co/NnJmgSNQ/58f160fa8af9a9ce9bee60befb1b926d-2.jpg">Dragon 2</option>
-            <option value="https://i.ibb.co/k2M7pcMD/40ea9c34484ddc8969e1f3d17da621bd.jpg">Black Luffy</option>
-            <option value="https://i.ibb.co/q3S3JKh5/93c1e8653c6bb61d9455cd5721717cbd.jpg">Black Yoruichi</option>
-            <option value="https://i.ibb.co/5W1Xy8Y2/cecea15ee563e782b63a5340d24248d7.jpg">Sasuke Black</option>
-            <option value="https://i.ibb.co/6cdsHnTN/b4d2b038563748bc7b5261209f716e2c.jpg">Zenitsu Black</option>
-            <option value="https://i.ibb.co/MDX4HwR8/c0526ffff85d4d78c0c6eb128ee6ad38.jpg">Barbe Blanche</option>
-            <option value="https://i.ibb.co/rKZRRkYX/IMG-20250618-WA0018.jpg">Zenitsu 2</option>
-            <option value="https://i.ibb.co/27Q5wCQS/5e75ef48e100d376243e7acb2365c208.jpg">Fleur Japonaise</option>
-            <option value="https://i.ibb.co/YTBVVGKD/c9fd2f3d961a669b46e0c0ac0582dcd9.jpg">Soul Eater</option>
-            <option value="https://i.ibb.co/jxBS6Q0/269c29f550cd6361e6531a274034ac59.jpg">Bunny Girl Senpai</option>
-            <option value="https://i.ibb.co/JwvBBBq9/251c0a6433814ac09758c19e9168b519.jpg">Garou</option>
-            <option value="https://i.ibb.co/NgGpDqJ7/822fa20c05e3048434cfbf122b4e90f1.jpg">Sung Jinwoo</option>
-            <option value="https://i.ibb.co/twvqVB5w/IMG-20250618-WA0054.jpg">Satoru Gojo</option>
-            <option value="https://i.ibb.co/4RPDCJ56/IMG-20250618-WA0057.jpg">Girl Kawaii</option>
-            <option value="https://i.ibb.co/v67Qs7vt/IMG-20250618-WA0055.jpg">Solo Leveling</option>
-            <option value="https://i.ibb.co/jPG7MKvh/IMG-20250618-WA0062.jpg">Satoru Gojo 2</option>
-            <option value="https://i.ibb.co/KpLYvGJd/IMG-20250618-WA0051.jpg">Girl Fond 2</option>
-            <option value="https://i.ibb.co/B2CL1XL1/IMG-20250618-WA0061.jpg">Sukuna</option>
-            <option value="https://i.ibb.co/bYfqdpr/IMG-20250618-WA0059.jpg">Gojo 3</option>
-            <option value="https://i.ibb.co/TVX4Wz7/644501f2f4374d51dc5116e35c776f95.jpg">Kawaii</option>
-            <option value="https://i.ibb.co/qMnh06kP/b71f31eb609d3736b17a5826044275c3.jpg">Girl Fond 3</option>
-            <option value="https://i.ibb.co/Mx3cb73R/336c57cf19f0b2162cbae754e053c205.jpg">Girl Fond 4</option>
-            <option value="https://i.ibb.co/HDNsWpx9/26a2cc5025bf4f4506163b8b61606610.jpg">Kawaii 2</option>
-  <option value="https://i.ibb.co/FbnRNtCQ/6df0937df39ae77797cdb254f4f6979c.jpg">Kawaii 3</option>
-          </select>
-        </div>
-        
-        <button class="btn btn-primary" id="btnGenerer">🚀 Générer la carte</button>
-      </div>
-      
-      <div class="preview-section">
-        <h2 class="preview-title" id="previewTitle" style="display: none;">Aperçu de votre carte</h2>
-        
-        <div id="carte" class="carte modern" style="display: none;">
-          <div class="carte-header" data-translate="header">Carte d'identité Otaku</div>
-          <div class="carte-body">
-            <img id="imagePreview" src="https://via.placeholder.com/160x180.png?text=Photo" alt="Photo">
-            <div class="infos">
-              <p data-translate="nom">Nom :<span></span></p>
-              <p data-translate="prenom">Prénom :<span></span></p>
-              <p data-translate="perso">Personnage :<span></span></p>
-              <p data-translate="anime">Animé :<span></span></p>
-              <p data-translate="type">Type :<span></span></p>
-              <p data-translate="rang">Rang :<span></span></p>
-              <p id="txtCitation" data-translate="citation" style="display: none;">Citation :<span></span></p>
-            </div>
-          </div>
-          <div class="barcode">
-            <img src="https://bwipjs-api.metafloor.com/?bcid=code128&text=Otaku&includetext" alt="Code Barre">
-          </div>
-          <div class="carte-footer" data-translate="footer">
-            Une carte ? Non. Une relique d'un autre monde
-          </div>
-            </div>
-        
-        <div class="download-section" id="downloadSection" style="display: none;">
-          <button id="downloadBtn">📥 Télécharger la carte</button>
-        </div>
+ <p>Notre générateur de carte Otaku a déjà attiré plus de 500 utilisateurs !
+Je suis disponible pour faire de la publicité (produits, services, chaînes, pages...) sur ce site.
+Intéressé ? Contactez-moi dès maintenant !
+   <ul>
+     <li>Compte Facebook : <a href="https://www.facebook.com/profile.php?id=100077566350367" target="_blank">Contact du créateur</a>.</li>
+     <li>Whatsapp: <a href="https://wa.me/qr/VSIIYLVPVFI4J1" target="_blank">Ecrire sur whatsapp</a></li>
+   </ul>
+   </p>
+  <p class="pnb"><strong>NB:</strong>Veuillez Rogner après avoir choisis la photo pas avant</p>
+  <form id="otakuForm">
+    <select id="langue" onchange="changerLangue()">
+      <option value="fr">Français</option>
+      <option value="en">English</option>
+      <option value="es">Español</option>
+      <option value="fil">Filipino</option>
+      <option value="mg">Malagasy</option>
+      <option value="ar">العربية</option>
+    </select>
+    <input type="text" id="nom" placeholder="Nom" required>
+    <input type="text" id="prenom" placeholder="Prénom" required>
+    <input type="text" id="perso" placeholder="Personnage préféré" required>
+    <input type="text" id="anime" placeholder="Animé préféré" required>
+    <select id="type">
+      <option>Shonen</option>
+      <option>Shojo</option>
+      <option>Isekai</option>
+      <option>Seinen</option>
+      <option>Ecchi</option>
+    </select>
+    <input type="text" id="rang" placeholder="Rang" required>
+    <input type="text" id="citation" placeholder="Citation préférée (facultatif)">
+    <input type="file" id="photo" accept="image/*">
+    <button type="button" onclick="rognerPhoto()">Rogner la photo</button>
+    <label for="couleur">Choisis ta couleur :</label>
+    <select id="couleur" onchange="changerCouleurCarte()">
+      <option value="#ff69b4">Rose</option>
+      <option value="#ff3c3c">Rouge</option>
+      <option value="#ffa500">Orange</option>
+      <option value="#ffff00">Jaune</option>
+      <option value="#00ff00">Vert</option>
+      <option value="#00ced1">Cyan</option>
+      <option value="#1e90ff">Bleu</option>
+      <option value="#8a2be2">Violet</option>
+      <option value="#ff1493">Fuchsia</option>
+     <option value="#808080">Gris</option>
+     <option value="#00bfff">Bleu ciel</option>
+     <option value="#ffb6c1">Rose clair</option>
+     <option value="#2e8b57">Vert foncé</option>
+     <option value="#c71585">Rose foncé</option>
+     <option value="#ffd700">Or</option>
+     <option value="#e6e6fa">Lavande</option>
+</select>
+    <label for="background">Choisis ton image de fond :</label>
+<select id="background" onchange="previewBackground()" aria-label="Choisir l'image de fond">
+  <option value="https://i.ibb.co/kgDFXrMj/dc4b1b59c88b0771e852053272733fb4-2.jpg">Obito</option>
+  <option value="https://i.ibb.co/FL9hT47w/9f522e9da02a6d2f26ec4327bde3d28d-2.jpg">Luffy</option>
+  <option value="https://i.ibb.co/whb5Dw0n/a97b28b642f082dd10aa0aa46072828f-2.jpg">Sharingan 1</option>
+  <option value="https://i.ibb.co/6RhSRd31/047d1b99cd5a784fe5bb845793d78c9f-2.jpg">Dragon 1</option>
+  <option value="https://i.ibb.co/7NYJNcSn/e7d5aff48e7d1eec499ebcc5bfc85b74-2.jpg">Sharingan 2</option>
+  <option value="https://i.ibb.co/NnJmgSNQ/58f160fa8af9a9ce9bee60befb1b926d-2.jpg">Dragon 2</option>
+  <option value="https://i.ibb.co/k2M7pcMD/40ea9c34484ddc8969e1f3d17da621bd.jpg">Black Luffy</option>
+  <option value="https://i.ibb.co/q3S3JKh5/93c1e8653c6bb61d9455cd5721717cbd.jpg">Black yorishi</option>
+  <option value="https://i.ibb.co/5W1Xy8Y2/cecea15ee563e782b63a5340d24248d7.jpg">Sasuke black</option>
+  <option value="https://i.ibb.co/6cdsHnTN/b4d2b038563748bc7b5261209f716e2c.jpg">Zenitsu black</option>
+  <option value="https://i.ibb.co/MDX4HwR8/c0526ffff85d4d78c0c6eb128ee6ad38.jpg">Barbe blanche</option>
+  <option value="https://i.ibb.co/rKZRRkYX/IMG-20250618-WA0018.jpg">Zenitsu 2</option>
+  <option value="https://i.ibb.co/27Q5wCQS/5e75ef48e100d376243e7acb2365c208.jpg">Fond fleur japonais black</option>
+  <option value="https://i.ibb.co/YTBVVGKD/c9fd2f3d961a669b46e0c0ac0582dcd9.jpg">Fond soul eater black</option>
+  <option value="https://i.ibb.co/jxBS6Q0/269c29f550cd6361e6531a274034ac59.jpg">Bunny girl senpai</option>
+  <option value="https://i.ibb.co/JwvBBBq9/251c0a6433814ac09758c19e9168b519.jpg">Garou fond black</option>
+  <option value="https://i.ibb.co/NgGpDqJ7/822fa20c05e3048434cfbf122b4e90f1.jpg">Sung jinwoo</option>
+  <option value="https://i.ibb.co/twvqVB5w/IMG-20250618-WA0054.jpg">Satoru Gojo</option>
+  <option value="https://i.ibb.co/4RPDCJ56/IMG-20250618-WA0057.jpg">Girl Kawaii</option>
+  <option value="https://i.ibb.co/v67Qs7vt/IMG-20250618-WA0055.jpg">Solo leveling</option>
+  <option value="https://i.ibb.co/jPG7MKvh/IMG-20250618-WA0062.jpg">Satoru Gojo 2</option>
+  <option value="https://i.ibb.co/KpLYvGJd/IMG-20250618-WA0051.jpg">Girl fond 2</option>
+  <option value="https://i.ibb.co/B2CL1XL1/IMG-20250618-WA0061.jpg">Sukuna</option>
+  <option value="https://i.ibb.co/bYfqdpr/IMG-20250618-WA0059.jpg">Gojo 2</option>
+  <option value="https://i.ibb.co/TVX4Wz7/644501f2f4374d51dc5116e35c776f95.jpg">Kawaii fond</option>
+  <option value="https://i.ibb.co/qMnh06kP/b71f31eb609d3736b17a5826044275c3.jpg">Girl fond 3</option>
+  <option value="https://i.ibb.co/Mx3cb73R/336c57cf19f0b2162cbae754e053c205.jpg">Girl fond 4</option>
+  <option value="https://i.ibb.co/HDNsWpx9/26a2cc5025bf4f4506163b8b61606610.jpg">Kawaii fond 2</option>
+  <option value="https://i.ibb.co/FbnRNtCQ/6df0937df39ae77797cdb254f4f6979c.jpg">Kawaii fond 3</option>
+  <option value="default">Aucune (par défaut)</option>
+</select>
+    <button type="button" onclick="genererCarte()">Générer la carte 😍</button>
+  </form>
+
+  <div id="carte" class="carte" style="display: none;">
+    <div class="carte-header" data-translate="header">Carte d'identité Otaku</div>
+    <div class="carte-body">
+      <img id="imagePreview" src="https://via.placeholder.com/150x170.png?text=Photo" alt="Photo">
+      <div class="infos">
+        <p data-translate="nom">Nom : <span></span></p>
+        <p data-translate="prenom">Prénom : <span></span></p>
+        <p data-translate="perso">Personnage préféré : <span></span></p>
+        <p data-translate="anime">Animé préféré : <span></span></p>
+        <p data-translate="type">Type de manga : <span></span></p>
+        <p data-translate="rang">Rang : <span></span></p>
+        <p id="txtCitation" data-translate="citation" style="display: none;">Citation préférée : <span></span></p>
       </div>
     </div>
-    
-    <div class="info-panel">
-      <h3>💼 Opportunités publicitaires</h3>
-      <p>Notre générateur de carte Otaku a déjà attiré plus de 500 utilisateurs ! Je suis disponible pour faire de la publicité (produits, services, chaînes, pages...) sur ce site. Intéressé ? Contactez-moi dès maintenant !</p>
-      <ul>
-        <li>📘 Facebook : <a href="https://www.facebook.com/profile.php?id=100077566350367" target="_blank">Contact du créateur</a></li>
-        <li>💬 WhatsApp : <a href="https://wa.me/22967091309" target="_blank">+229 67 09 13 09</a></li>
-      </ul>
-      <div class="note-box">
-        <strong>⚠️ Note importante :</strong> Veuillez rogner après avoir choisi la photo, pas avant.
-      </div>
+    <div class="barcode">
+      <img src="https://bwipjs-api.metafloor.com/?bcid=code128&text=Otaku&includetext" alt="Code Barre">
+    </div>
+    <div class="carte-footer" data-translate="footer">
+Une carte ? Non. Une relique d’un autre monde
     </div>
   </div>
 
-  <div id="fb-popup" class="popup">
-    <strong>🔥 Hey otaku !</strong><br>
-    Abonne-toi au compte Facebook du créateur pour le soutenir 👇<br>
-    <a href="https://www.facebook.com/exau.ce.706852" target="_blank">👉 Suis-nous sur Facebook</a>
-    <br>
-    <button id="closeFbPopup">Fermer</button>
-  </div>
+  <button id="downloadBtn" onclick="telechargerCarte()">Télécharger la carte📥</button>
 
-  <div id="ebook-notif" class="popup">
-    <strong>📘 Nouveau !</strong><br>
-    Le créateur de ce site a lancé un eBook pour créer ton premier site web !<br><br>
-    <a href="https://osxzfvga.mychariow.com" target="_blank">Découvre-le ici</a>
-    <br>
-    <button id="closeEbookPopup">Fermer</button>
-  </div>
-
-  <div class="footer">
-    <p>© 2025 GANDXO. Tous droits réservés.</p>
-  </div>
-
+<!-- ✅ POPUP HTML -->
+<div id="fb-popup" style="display:none; position:fixed; bottom:20px; right:20px; background:#fff; color:#000; padding:15px; border-radius:12px; box-shadow:0 0 15px rgba(0,0,0,0.2); z-index:9999; font-family:sans-serif; max-width:300px;">
+  <strong>🔥 Hey otaku !</strong><br>
+  Abonne-toi au compte Facebook du créateur pour le soutenir 👇<br>
+  <a href="https://www.facebook.com/exau.ce.706852" target="_blank" style="color:#1877F2; font-weight:bold; text-decoration:none;">👉 Suis-nous sur Facebook</a>
+  <br><br>
+  <button onclick="closePopup()" style="margin-top:10px; padding:6px 12px; border:none; background:#444; color:#fff; border-radius:8px; cursor:pointer;">Fermer</button>
+</div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script>
-    // Traductions
     const traductions = {
       fr: {
         header: "Carte d'identité Otaku",
         nom: "Nom :",
         prenom: "Prénom :",
-        perso: "Personnage :",
-        anime: "Animé :",
-        type: "Type :",
+        perso: "Personnage préféré :",
+        anime: "Animé préféré :",
+        type: "Type de manga :",
         rang: "Rang :",
-        citation: "Citation :",
-        footer: "Une carte ? Non. Une relique d'un autre monde"
+        citation: "Citation préférée :",
+        footer: "Ni rêve, ni illusion. Juste toi et l’univers infini des animés."
       },
       en: {
         header: "Otaku ID Card",
         nom: "Last Name :",
         prenom: "First Name :",
-        perso: "Character :",
-        anime: "Anime :",
-        type: "Type :",
+        perso: "Favorite Character :",
+        anime: "Favorite Anime :",
+        type: "Manga Type :",
         rang: "Rank :",
-        citation: "Quote :",
-        footer: "A card? No. A relic from another world"
+        citation: "Favorite Quote :",
+        footer: "No dream, no illusion. Just you and the infinite anime universe."
       },
       es: {
         header: "Tarjeta de Identidad Otaku",
         nom: "Apellido :",
         prenom: "Nombre :",
-        perso: "Personaje :",
-        anime: "Anime :",
-        type: "Tipo :",
+        perso: "Personaje Favorito :",
+        anime: "Anime Favorito :",
+        type: "Tipo de Manga :",
         rang: "Rango :",
-        citation: "Cita :",
-        footer: "¿Una tarjeta? No. Una reliquia de otro mundo"
+        citation: "Cita Favorita :",
+        footer: "Ni sueño, ni ilusión. Solo tú y el universo infinito del anime."
       },
       fil: {
         header: "Otaku ID Card",
         nom: "Pangalan :",
-        prenom: "Unang Pangalan :",
-        perso: "Tauhan :",
-        anime: "Anime :",
-        type: "Uri :",
+        prenom: "Pangalan sa Gitna :",
+        perso: "Paboritong Tauhan :",
+        anime: "Paboritong Anime :",
+        type: "Uri ng Manga :",
         rang: "Ranggo :",
-        citation: "Quote :",
-        footer: "Isang kard? Hindi. Isang relihiya mula sa ibang mundo"
+        citation: "Paboritong Quote :",
+        footer: "Walang pangarap, walang ilusyon. Ikaw at ang walang hanggang mundo ng anime."
       },
       mg: {
         header: "Karapanondro Otaku",
         nom: "Anarana :",
         prenom: "Anarana fanampiny :",
-        perso: "Tantara :",
-        anime: "Anime :",
-        type: "Karazana :",
+        perso: "Tantara tianao :",
+        anime: "Anime tianao :",
+        type: "Karazana Manga :",
         rang: "Laharana :",
-        citation: "Teny :",
-        footer: "Karapanondro? Tsia. Rakitra avy amin'ny tontolo hafa"
+        citation: "Ohatra tianao :",
+        footer: "Tsy nofy, tsy fitaka. Hianao sy ny anime rehetra."
       },
       ar: {
         header: "بطاقة هوية أوتاكو",
-        nom: "الاسم :",
+        nom: "الاسم العائلي :",
         prenom: "الاسم الأول :",
-        perso: "الشخصية :",
-        anime: "الأنمي :",
-        type: "النوع :",
+        perso: "الشخصية المفضلة :",
+        anime: "الأنمي المفضل :",
+        type: "نوع المانجا :",
         rang: "الرتبة :",
-        citation: "الاقتباس :",
-        footer: "بطاقة؟ لا. أثر من عالم آخر"
+        citation: "الاقتباس المفضل :",
+        footer: "لا حلم ولا وهم. فقط أنت والكون اللامتناهي للأنمي."
       }
     };
 
-    // Variables globales
-    let currentStyle = 'modern';
-
-    // Fonction de changement de langue
     function changerLangue() {
       const langue = document.getElementById('langue').value;
       const elements = document.querySelectorAll('[data-translate]');
 
       elements.forEach(el => {
         const key = el.getAttribute('data-translate');
-        if (el.querySelector('span')) {
-          el.childNodes[0].textContent = traductions[langue][key];
-        } else {
-          el.textContent = traductions[langue][key];
-        }
+        el.childNodes[0].textContent = traductions[langue][key];
       });
 
       document.getElementById('citation').placeholder = traductions[langue].citation.replace(' :', '') + ' (facultatif)';
 
       const carte = document.getElementById('carte');
       if(langue === 'ar') {
-        carte.setAttribute('dir', 'rtl');
+        carte.style.direction = 'rtl';
+        document.querySelector('.infos').style.textAlign = 'right';
       } else {
-        carte.setAttribute('dir', 'ltr');
+        carte.style.direction = 'ltr';
+        document.querySelector('.infos').style.textAlign = 'left';
       }
     }
 
-    // Fonction de génération de carte
     function genererCarte() {
-      const nom = document.getElementById("nom").value.trim();
-      const prenom = document.getElementById("prenom").value.trim();
-      const perso = document.getElementById("perso").value.trim();
-      const anime = document.getElementById("anime").value.trim();
-      const rang = document.getElementById("rang").value.trim();
+      const langue = document.getElementById('langue').value;
 
-      if (!nom || !prenom || !perso || !anime || !rang) {
-        alert("Veuillez remplir tous les champs obligatoires !");
-        return;
-      }
-
-      document.querySelector('[data-translate="nom"] span').textContent = nom;
-      document.querySelector('[data-translate="prenom"] span').textContent = prenom;
-      document.querySelector('[data-translate="perso"] span').textContent = perso;
-      document.querySelector('[data-translate="anime"] span').textContent = anime;
+      document.querySelector('[data-translate="nom"] span').textContent = document.getElementById("nom").value;
+      document.querySelector('[data-translate="prenom"] span').textContent = document.getElementById("prenom").value;
+      document.querySelector('[data-translate="perso"] span').textContent = document.getElementById("perso").value;
+      document.querySelector('[data-translate="anime"] span').textContent = document.getElementById("anime").value;
       document.querySelector('[data-translate="type"] span').textContent = document.getElementById("type").value;
-      document.querySelector('[data-translate="rang"] span').textContent = rang;
+      document.querySelector('[data-translate="rang"] span').textContent = document.getElementById("rang").value;
 
       const citation = document.getElementById("citation").value.trim();
       const citationEl = document.getElementById("txtCitation");
@@ -881,16 +432,10 @@
       }
 
       const carte = document.getElementById("carte");
-      const previewTitle = document.getElementById("previewTitle");
-      const downloadSection = document.getElementById("downloadSection");
-      
       carte.style.display = "block";
-      previewTitle.style.display = "block";
-      downloadSection.style.display = "block";
-      
-      carte.classList.remove('show');
+      carte.style.animation = "none";
       void carte.offsetWidth;
-      carte.classList.add('show');
+      carte.style.animation = "fadeInScale 0.5s ease forwards";
 
       const file = document.getElementById("photo").files[0];
       const image = document.getElementById("imagePreview");
@@ -901,18 +446,20 @@
         };
         reader.readAsDataURL(file);
       } else {
-        image.src = "https://via.placeholder.com/160x180.png?text=Photo";
+        image.src = "https://via.placeholder.com/150x170.png?text=Photo";
       }
 
-      setTimeout(() => {
-        carte.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }, 100);
+      if(langue === 'ar') {
+        document.querySelector('.infos').style.textAlign = 'right';
+      } else {
+        document.querySelector('.infos').style.textAlign = 'left';
+      }
     }
 
-    // Fonction de téléchargement
     function telechargerCarte() {
       const carte = document.getElementById("carte");
-      
+      window.scrollTo(0, carte.offsetTop - 100);
+
       html2canvas(carte, {
         useCORS: true,
         allowTaint: false,
@@ -920,55 +467,40 @@
         backgroundColor: null
       }).then(canvas => {
         const link = document.createElement("a");
-        link.download = "carte_otaku_" + Date.now() + ".png";
+        link.download = "carte_otaku.png";
         link.href = canvas.toDataURL("image/png");
         link.click();
       }).catch(error => {
-        console.error("Erreur lors de la capture :", error);
-        alert("Erreur lors du téléchargement. Veuillez réessayer.");
+        alert("Erreur lors de la capture : " + error);
       });
     }
 
-    // Fonction de changement de couleur
     function changerCouleurCarte() {
       const couleur = document.getElementById("couleur").value;
       document.documentElement.style.setProperty("--accent", couleur);
-      
-      const hex = couleur.replace('#', '');
-      const r = parseInt(hex.substring(0, 2), 16);
-      const g = parseInt(hex.substring(2, 4), 16);
-      const b = parseInt(hex.substring(4, 6), 16);
-      
-      const darkerR = Math.floor(r * 0.7);
-      const darkerG = Math.floor(g * 0.7);
-      const darkerB = Math.floor(b * 0.7);
-      
-      const darkerColor = '#' + 
-        darkerR.toString(16).padStart(2, '0') + 
-        darkerG.toString(16).padStart(2, '0') + 
-        darkerB.toString(16).padStart(2, '0');
-      
-      document.documentElement.style.setProperty("--accent-dark", darkerColor);
-      document.documentElement.style.setProperty("--accent-glow", `rgba(${r}, ${g}, ${b}, 0.3)`);
     }
-
-    // Fonction de prévisualisation du fond
-    function previewBackground() {
-      const background = document.getElementById("background").value;
-      const carte = document.getElementById("carte");
-      
-      if (background === "default") {
-        carte.style.background = "linear-gradient(145deg, var(--bg-card), var(--bg-secondary))";
-        carte.style.backgroundImage = "none";
-      } else {
-        carte.style.background = "none";
-        carte.style.backgroundImage = `url("${background}")`;
-        carte.style.backgroundSize = "cover";
-        carte.style.backgroundPosition = "center";
-      }
-    }
-
-    // Fonction de rognage
+function previewBackground() {
+  const background = document.getElementById("background").value;
+  const carte = document.getElementById("carte");
+  if (background === "default") {
+    carte.style.background = "linear-gradient(145deg, #262626, #444)";
+    carte.style.backgroundImage = "none";
+  } else {
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onerror = () => {
+      alert("Erreur : L'image de fond n'a pas pu être chargée.");
+      carte.style.backgroundImage = "none";
+    };
+    img.onload = () => {
+      carte.style.background = "none";
+      carte.style.backgroundImage = `url("${background}")`;
+      carte.style.backgroundSize = "cover";
+      carte.style.backgroundPosition = "center";
+    };
+    img.src = background;
+  }
+}
     function rognerPhoto() {
       const input = document.getElementById("photo");
       const image = document.getElementById("imagePreview");
@@ -983,92 +515,13 @@
             const sy = (img.height - size) / 2;
 
             const canvas = document.createElement("canvas");
-            canvas.width = 160;
-            canvas.height = 180;
+            canvas.width = 150;
+            canvas.height = 170;
             const ctx = canvas.getContext("2d");
-            ctx.drawImage(img, sx, sy, size, size, 0, 0, 160, 180);
+            ctx.drawImage(img, sx, sy, size, size, 0, 0, 150, 170);
 
             image.src = canvas.toDataURL("image/png");
           };
           img.src = e.target.result;
         };
-        reader.readAsDataURL(input.files[0]);
-      } else {
-        alert("Veuillez d'abord choisir une photo.");
-      }
-    }
-
-    // Fonction de changement de style
-    function changerStyle(style) {
-      const carte = document.getElementById('carte');
-      const options = document.querySelectorAll('.style-option');
-      
-      options.forEach(opt => opt.classList.remove('active'));
-      
-      event.target.classList.add('active');
-      
-      carte.classList.remove('modern', 'sharp', 'rounded');
-      carte.classList.add(style);
-      
-      currentStyle = style;
-    }
-
-    // Event Listeners
-    document.addEventListener('DOMContentLoaded', function() {
-      // Langue
-      document.getElementById('langue').addEventListener('change', changerLangue);
-      
-      // Bouton générer
-      document.getElementById('btnGenerer').addEventListener('click', genererCarte);
-      
-      // Bouton rogner
-      document.getElementById('btnRogner').addEventListener('click', rognerPhoto);
-      
-      // Bouton télécharger
-      document.getElementById('downloadBtn').addEventListener('click', telechargerCarte);
-      
-      // Couleur
-      document.getElementById('couleur').addEventListener('change', changerCouleurCarte);
-      
-      // Background
-      document.getElementById('background').addEventListener('change', previewBackground);
-      
-      // Style options
-      document.querySelectorAll('.style-option').forEach(option => {
-        option.addEventListener('click', function() {
-          const style = this.getAttribute('data-style');
-          const carte = document.getElementById('carte');
-          const options = document.querySelectorAll('.style-option');
-          
-          options.forEach(opt => opt.classList.remove('active'));
-          this.classList.add('active');
-          
-          carte.classList.remove('modern', 'sharp', 'rounded');
-          carte.classList.add(style);
-        });
-      });
-      
-      // Popups
-      document.getElementById('closeFbPopup').addEventListener('click', function() {
-        document.getElementById('fb-popup').style.display = 'none';
-      });
-      
-      document.getElementById('closeEbookPopup').addEventListener('click', function() {
-        document.getElementById('ebook-notif').style.display = 'none';
-      });
-      
-      // Affichage des popups
-      setTimeout(() => {
-        document.getElementById('ebook-notif').style.display = 'block';
-        setTimeout(() => {
-          document.getElementById('ebook-notif').style.display = 'none';
-        }, 15000);
-      }, 5000);
-
-      setTimeout(() => {
-        document.getElementById('fb-popup').style.display = 'block';
-      }, 20000);
-    });
-  </script>
-</body>
-</html>
+                reader.readAsDataURL
